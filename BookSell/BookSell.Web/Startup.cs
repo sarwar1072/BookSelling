@@ -1,6 +1,5 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using BookSell.Web.Data;
 using Framework;
 using Membership;
 using Membership.Entities;
@@ -51,7 +50,7 @@ namespace BookSell.Web
             var connectionString = Configuration.GetConnectionString(connectionStringName);
             var migrationAssemblyName = typeof(Startup).Assembly.FullName;
 
-            builder.RegisterModule(new MembershipModule(connectionString, migrationAssemblyName));
+           builder.RegisterModule(new MembershipModule(connectionString, migrationAssemblyName));
             builder.RegisterModule(new WebModule(connectionString, migrationAssemblyName, WebHostEnvironment));
            builder.RegisterModule(new FoundationModule(connectionString, migrationAssemblyName));
         }
@@ -65,15 +64,15 @@ namespace BookSell.Web
             var connectionString = Configuration.GetConnectionString(connectionStringName);
             var migrationAssemblyName = typeof(Startup).Assembly.FullName;
 
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
 
-            //services.AddDbContext<SMDbContext>(options =>
-            // options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
+            services.AddDbContext<FrameworkContext>(options =>
+             options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
 
             services
                 .AddIdentity<ApplicationUser, Role>()
-                //.AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddUserManager<UserManager>()
                 .AddRoleManager<RoleManager>()
                 .AddSignInManager<SignInManager>()
