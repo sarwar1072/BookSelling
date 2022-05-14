@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Framework.Repositories;
+using Framework.UnitOfWorkPro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,8 @@ namespace Framework
             builder.RegisterType<ShoppingCartRepository>().As<IShoppingCartRepository>()
              .InstancePerLifetimeScope();
 
-          
+            builder.RegisterType<SellUnitOfWork>().As<ISellUnitOfWork>()
+                .InstancePerLifetimeScope();
 
             // builder.RegisterType<RazorPayConfig>().AsSelf();
 

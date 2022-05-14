@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,5 +39,28 @@ namespace DataAccessLayer
             string includeProperties = "", bool isTrackingOff = false);
 
         TEntity GetFirstOrDefault(Expression<Func<TEntity, bool>> filter = null, string includeProperties = null);
+
+        (IList<TEntity> data, int total, int totalDisplay) Get(
+           Expression<Func<TEntity, bool>> filter = null,
+           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+           Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, int pageIndex = 1, int pageSize = 10, bool isTrackingOff = false);
+
+        (IList<TEntity> data, int total, int totalDisplay) GetDynamic(
+           Expression<Func<TEntity, bool>> filter = null,
+           string orderBy = null,
+           Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, int pageIndex = 1, int pageSize = 10, bool isTrackingOff = false);
+
+        IList<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
+           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+           Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, bool isTrackingOff = false);
+
+        IList<TEntity> GetDynamic(Expression<Func<TEntity, bool>> filter = null,
+            string orderBy = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null
+            , bool isTrackingOff = false);
+
+
+
+
     }
 }

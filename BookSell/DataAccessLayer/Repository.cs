@@ -5,6 +5,7 @@ using System.Text;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Linq.Dynamic.Core;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace DataAccessLayer
 {
@@ -256,10 +257,154 @@ namespace DataAccessLayer
                     query = query.Include(includeProp);
                 }
             }
-
-
             return query.FirstOrDefault();
         }
+
+        public virtual (IList<TEntity> data, int total, int totalDisplay) Get(
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, int pageIndex = 1, int pageSize = 10, bool isTrackingOff = false)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            var total = query.Count();
+            var totalDisplay = query.Count();
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+                totalDisplay = query.Count();
+            }
+
+            if (include != null)
+            {
+                query = include(query);
+            }
+
+            if (orderBy != null)
+            {
+                var result = orderBy(query).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                if (isTrackingOff)
+                    return (result.AsNoTracking().ToList(), total, totalDisplay);
+                else
+                    return (result.ToList(), total, totalDisplay);
+            }
+            else
+            {
+                var result = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                if (isTrackingOff)
+                    return (result.AsNoTracking().ToList(), total, totalDisplay);
+                else
+                    return (result.ToList(), total, totalDisplay);
+            }
+        }
+
+        public virtual (IList<TEntity> data, int total, int totalDisplay) GetDynamic(
+            Expression<Func<TEntity, bool>> filter = null,
+            string orderBy = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, int pageIndex = 1, int pageSize = 10, bool isTrackingOff = false)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            var total = query.Count();
+            var totalDisplay = query.Count();
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+                totalDisplay = query.Count();
+            }
+
+            if (include != null)
+            {
+                query = include(query);
+            }
+
+            if (orderBy != null)
+            {
+                var result = query.OrderBy(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                if (isTrackingOff)
+                    return (result.AsNoTracking().ToList(), total, totalDisplay);
+                else
+                    return (result.ToList(), total, totalDisplay);
+            }
+            else
+            {
+                var result = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                if (isTrackingOff)
+                    return (result.AsNoTracking().ToList(), total, totalDisplay);
+                else
+                    return (result.ToList(), total, totalDisplay);
+            }
+        }
+
+        public virtual IList<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, bool isTrackingOff = false)
+        {
+            IQueryable<TEntity> query = _dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (include != null)
+            {
+                query = include(query);
+            }
+
+            if (orderBy != null)
+            {
+                var result = orderBy(query);
+
+                if (isTrackingOff)
+                    return result.AsNoTracking().ToList();
+                else
+                    return result.ToList();
+            }
+            else
+            {
+                if (isTrackingOff)
+                    return query.AsNoTracking().ToList();
+                else
+                    return query.ToList();
+            }
+        }
+
+        public virtual IList<TEntity> GetDynamic(Expression<Func<TEntity, bool>> filter = null,
+            string orderBy = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null
+            , bool isTrackingOff = false)
+        {
+            IQueryable<TEntity> query = _dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (include != null)
+            {
+                query = include(query);
+            }
+
+            if (orderBy != null)
+            {
+                var result = query.OrderBy(orderBy);
+
+                if (isTrackingOff)
+                    return result.AsNoTracking().ToList();
+                else
+                    return result.ToList();
+            }
+            else
+            {
+                if (isTrackingOff)
+                    return query.AsNoTracking().ToList();
+                else
+                    return query.ToList();
+            }
+        }
+
 
     }
 }
