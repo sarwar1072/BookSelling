@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Framework.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,41 +25,28 @@ namespace Framework
                 .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                 .InstancePerLifetimeScope();
 
-            // builder.RegisterType<CartRepository>().As<ICartRepository>()
-            //     .InstancePerLifetimeScope();
+            builder.RegisterType<CategoryRepository>().As<ICategoryRepository>()
+                .InstancePerLifetimeScope();
 
-            // builder.RegisterType<CategoryRepository>().As<ICategoryRepository>()
-            //     .InstancePerLifetimeScope();
+            builder.RegisterType<CompanyRepository>().As<ICompanyRepository>()
+                .InstancePerLifetimeScope();
 
-            // builder.RegisterType<ShoppingUnitOfWork>().As<IShoppingUnitOfWork>()
-            //     .InstancePerLifetimeScope();
+            builder.RegisterType<CoverTypeRepository>().As<ICoverTypeRepository>()
+                .InstancePerLifetimeScope();
 
-            // builder.RegisterType<ItemRepository>().As<IItemRepository>()
-            //     .InstancePerLifetimeScope();
+            builder.RegisterType<OrderDetailsRepository>().As<IOrderDetailsRepository>()
+                .InstancePerLifetimeScope();
 
-            // builder.RegisterType<ItemTypeRepository>().As<IItemTypeRepository>()
-            //     .InstancePerLifetimeScope();
+            builder.RegisterType<OrderHeaderRepository>().As<IOrderHeaderRepository>()
+                .InstancePerLifetimeScope();
 
-            // builder.RegisterType<OrderRepository>().As<IOrderRepository>()
-            //   .InstancePerLifetimeScope();
+            builder.RegisterType<ProductRepository>().As<IProductRepository>()
+              .InstancePerLifetimeScope();
 
-            // builder.RegisterType<CatalogueServices>().As<ICatalogueServices>()
-            //  .InstancePerLifetimeScope();
+            builder.RegisterType<ShoppingCartRepository>().As<IShoppingCartRepository>()
+             .InstancePerLifetimeScope();
 
-            // builder.RegisterType<CartService>().As<ICartService>()
-            // .InstancePerLifetimeScope();
-
-            // builder.RegisterType<CartItemRepository>().As<ICartItemRepository>()
-            // .InstancePerLifetimeScope();
-
-            //  builder.RegisterType<PaymentDetailsRepository>().As<IPaymentDetailsRepository>()
-            // .InstancePerLifetimeScope();
-
-            // builder.RegisterType<OrderService>().As<IOrderService>()
-            //  .InstancePerLifetimeScope();
-
-            // builder.RegisterType<PaymentService>().As<IPaymentService>()
-            //.InstancePerLifetimeScope();
+          
 
             // builder.RegisterType<RazorPayConfig>().AsSelf();
 
