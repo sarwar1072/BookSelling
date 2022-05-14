@@ -10,7 +10,7 @@ namespace Framework.Entities
     {
         [Key]
         public int Id { get; set; }
-        //public string ApplicationUserId { get; set; }
+        public Guid ApplicationUserId { get; set; }
         //[ForeignKey("ApplicationUserId")]
         //public ApplicationUser ApplicationUser { get; set; }
         //[Required]

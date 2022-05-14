@@ -12,11 +12,11 @@ namespace Framework.Entities
         [Key]
         public int Id { get; set; }
 
-        [Required]
+       // [Required]
         public int OrderId { get; set; }
         [ForeignKey("OrderId")]
         public OrderHeader OrderHeader { get; set; }
-        [Required]
+      //  [Required]
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
         public Product Product { get; set; }

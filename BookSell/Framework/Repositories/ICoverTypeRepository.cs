@@ -1,5 +1,5 @@
 ﻿using DataAccessLayer;
-using Framework.Entitiess;
+using Framework.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

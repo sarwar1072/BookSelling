@@ -1,7 +1,9 @@
-﻿using Membership.Data;
+﻿using Framework.Entities;
+using Membership.Data;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,6 +11,14 @@ namespace Membership.Entities
 {
     public class ApplicationUser : IdentityUser<Guid>
     {
+        public string StreetAddress { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string PostalCode { get; set; }
+        //public int? CompanyId { get; set; }
+        ////[ForeignKey("CompanyId")]
+        //public Company Company { get; set; }
+        
         public string ImageUrl { get; set; }
         public bool Status { get; set; }
         public string FullName { get; set; }
