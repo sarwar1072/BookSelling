@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Framework.Repositories;
+using Framework.Services;
 using Framework.UnitOfWorkPro;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,15 @@ namespace Framework
 
             builder.RegisterType<SellUnitOfWork>().As<ISellUnitOfWork>()
                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<CategoryService>().As<ICategoryService>()
+               .InstancePerLifetimeScope();
+
+            builder.RegisterType<CompanyService>().As<ICompanyService>()
+               .InstancePerLifetimeScope();
+
+            builder.RegisterType<CoverTypeService>().As<ICoverTypeService>()
+              .InstancePerLifetimeScope();
 
             // builder.RegisterType<RazorPayConfig>().AsSelf();
 

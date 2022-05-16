@@ -49,7 +49,7 @@ namespace Framework.Services
         public (IList<Company> companies,int total,int totalDisplay)GetCompany(int pageindex,int pagesize,
                                                                                   string searchText,string orderBy)
         {
-            var result = _sellUnitOfWork.CompanyRepository.GetDynamic(null, orderBy, "", pageindex, pagesize);
+            var result = _sellUnitOfWork.CompanyRepository.GetDynamic(null, orderBy, "", pageindex, pagesize,true);
             return (result.data, result.total, result.totalDisplay);
         }
         public void Dispose()
