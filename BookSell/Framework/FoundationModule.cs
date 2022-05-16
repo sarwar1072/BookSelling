@@ -59,6 +59,8 @@ namespace Framework
 
             builder.RegisterType<CoverTypeService>().As<ICoverTypeService>()
               .InstancePerLifetimeScope();
+            builder.RegisterType<ProductService>().As<IProductService>()
+                .InstancePerLifetimeScope();
 
             // builder.RegisterType<RazorPayConfig>().AsSelf();
 
