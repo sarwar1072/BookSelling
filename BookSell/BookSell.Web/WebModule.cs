@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using BookSell.Web.Areas.Admin.Models.CoverTypeFolder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -24,7 +25,7 @@ namespace BookSell.Web
 
         protected override void Load(ContainerBuilder builder)
         {
-            // builder.RegisterType<ICartService>().AsSelf();
+            builder.RegisterType<CoverTypeModel>().AsSelf();
             //builder.RegisterType<ItemModel>().AsSelf();
             //builder.RegisterType<AuthenticationService>().As<IAuthenticationService>()
             //         .InstancePerLifetimeScope();

@@ -26,53 +26,54 @@
                     <ul class="navbar-nav flex-grow-1">
 
 
-                       
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Content Management
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                    <a class="dropdown-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">Cover Type</a>
-                    <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
-                </div>
-            </li>
 
-                      
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    User / Company
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
-                    <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Content Management
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">Cover Type</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                            </div>
+                        </li>
 
-                </div>
-            </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                User / Company
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>
+
+                            </div>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">
-                               
-                    @*<span>Manage Order</span>*@    
-                                
-                    <span>Order History</span>  
+
+                                @*<span>Manage Order</span>*@
+
+                                <span>Order History</span>
                             </a>
                         </li>
-                        
-            <li class="nav-item">
-                <a class="nav-link" asp-area="Admin" asp-controller="BrainTree" asp-action="Index">BrainTree</a>
-            </li>
-            <!--<li style="color:white;">
-                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
-               
-                    <i class="fas fa-shopping-cart"></i> &nbsp;--> @*(@count)*@
-                <!--</a>
-            </li>-->
-            <li style="color:white;">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-shopping-cart"></i> &nbsp; (0)
-                </a>
-            </li>
-                       
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="BrainTree" asp-action="Index">BrainTree</a>
+                        </li>
+                        <!--<li style="color:white;">
+                            <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
+
+                                <i class="fas fa-shopping-cart"></i> &nbsp;-->
+                        @*(@count)*@
+                        <!--</a>
+                        </li>-->
+                        <li style="color:white;">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-shopping-cart"></i> &nbsp; (0)
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -80,8 +81,8 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-          @*  <partial name="_Notifications">*@
-                @RenderBody()
+            @*  <partial name="_Notifications">*@
+            @RenderBody()
         </main>
     </div>
 
@@ -99,5 +100,14 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/e19c476714.js"></script>
     @RenderSection("Scripts", required: false)
+
+    @*<partial name="_ToasterMessage" model="@Model.Response" />*@
+    <script>
+        $(function () {
+            $("#response-alert").fadeTo(5000, 500).slideUp(500, function () {
+                $("#response-alert").slideUp(500);
+            });
+        });
+    </script>
 </body>
 </html>
