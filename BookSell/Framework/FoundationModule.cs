@@ -59,6 +59,7 @@ namespace Framework
 
             builder.RegisterType<CoverTypeService>().As<ICoverTypeService>()
               .InstancePerLifetimeScope();
+
             builder.RegisterType<ProductService>().As<IProductService>()
                 .InstancePerLifetimeScope();
 

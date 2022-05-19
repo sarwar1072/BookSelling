@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookSell.Web.Areas.Admin.Models
+namespace BookSell.Web.Models
 {
     public class DataTablesAjaxRequestModel
     {
