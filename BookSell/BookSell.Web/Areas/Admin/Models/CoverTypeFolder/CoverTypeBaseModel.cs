@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookSell.Web.Areas.Admin.Models.CoverTypeModel
+namespace BookSell.Web.Areas.Admin.Models.CoverTypeFolder
 {
     public class CoverTypeBaseModel : AdminBaseModel, IDisposable
     {
