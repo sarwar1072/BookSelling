@@ -4,6 +4,14 @@
 
 @{ ViewData["Title"] = "Accounts Type"; }
 
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-primary">Cover Type List </h2>
+    </div>
+    <div class="col-6 text-right">
+        <a class="btn btn-primary" asp-action="AddCoverType"><i class="fas fa-plus"></i> &nbsp; Create New Cover Type</a>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-12">
@@ -47,7 +55,7 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure, you want to delete?</p>
-                <form id="deleteForm" action="/admin/Account/DeleteAccount" method="post">
+                <form id="deleteForm" action="/admin/CoverType/DeleteCover" method="post">
                     @Html.AntiForgeryToken()
                     <input type="hidden" id="deleteId" value="" name="id" />
                 </form>
@@ -78,7 +86,7 @@
                         "targets": 1,
                         "width": "20%",
                         "render": function (data, type, row) {
-                            return `<button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/admin/Account/Edit/${data}'" value='${data}'>
+                            return `<button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/admin/CoverType/EditCover/${data}'" value='${data}'>
                                                 <i class="fas fa-pencil-alt">
                                                 </i>
                                                 Edit
@@ -93,7 +101,7 @@
                 ]
             });
 
-            $('#AccountTable').on('click', '.show-bs-modal', function (event) {
+        $('#Covertype').on('click', '.show-bs-modal', function (event) {
                 var id = $(this).data("id");
                 var modal = $("#modal-default");
                 modal.find('.modal-body p').text('Are you sure you want to delete this record?')

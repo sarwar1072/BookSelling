@@ -18,16 +18,17 @@ namespace BookSell.Web.Areas.Admin.Models.CoverTypeFolder
         {
             var edit = new Framework.Entities.CoverType
             {
+                Id=Id,
                 Name = Name
             };
-            _coverTypeService.AddCover(edit);
+            _coverTypeService.EditCover(edit);
         }
         public void Load(int id)
         {
             var cover = _coverTypeService.GetId(id);
             if (cover != null)
             {
-               // Id = cover.Id;
+               Id = cover.Id;
                 Name = cover.Name;
             }
         }
