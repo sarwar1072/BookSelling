@@ -145,7 +145,7 @@ namespace BookSell.Web
             {
                 endpoints.MapControllerRoute(
                    name: "default",
-                   pattern: "{area=Admin}/{controller=CoverType}/{action=Index}/{id?}");
+                   pattern: "{area=Admin}/{controller=Category}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
 
 

@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using BookSell.Web.Areas.Admin.Models;
+using BookSell.Web.Areas.Admin.Models.CategoryFolder;
 using BookSell.Web.Areas.Admin.Models.CoverTypeFolder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +30,9 @@ namespace BookSell.Web
             builder.RegisterType<CoverTypeModel>().AsSelf();
             builder.RegisterType<ResponseModel>().AsSelf();
 
-            //builder.RegisterType<ItemModel>().AsSelf();
+            builder.RegisterType<CategoryModel>().AsSelf();
+            //builder.RegisterType<CategoryModel>().AsSelf();
+
             //builder.RegisterType<AuthenticationService>().As<IAuthenticationService>()
             //         .InstancePerLifetimeScope();
             //builder.RegisterType<UserAccessor>().As<IUserAccessor>()

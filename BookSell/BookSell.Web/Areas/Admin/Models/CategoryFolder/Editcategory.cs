@@ -18,16 +18,17 @@ namespace BookSell.Web.Areas.Admin.Models.CategoryFolder
         {
             var edit = new Framework.Entities.Category
             { 
+                Id=Id,
                 Name = Name
             };
-            _categoryService.AddCategory(edit);
+            _categoryService.EditCategory(edit);
         }
         public void Load(int id)
         {
             var category = _categoryService.GetId(id);
             if (category != null)
             {
-                // Id = cover.Id;
+                Id = category.Id;
                 Name = category.Name;
             }
         }
