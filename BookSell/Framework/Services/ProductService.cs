@@ -35,6 +35,8 @@ namespace Framework.Services
         public void EditProduct(Product product)
         {
             var productEntity = _sellUnitOfWork.ProductRepository.GetById(product.Id);
+            productEntity.Id = product.Id;
+
             productEntity.Title = product.Title;
             productEntity.Description = product.Description;
             productEntity.ISBN = product.ISBN;
@@ -44,6 +46,8 @@ namespace Framework.Services
             productEntity.Price50 = product.Price50;
             productEntity.Price100 = productEntity.Price100;
             productEntity.ImageUrl = product.ImageUrl;
+            productEntity.CategoryId = product.CategoryId;
+            productEntity.CoverTypeId = product.CoverTypeId;
             _sellUnitOfWork.ProductRepository.Edit(productEntity);
             _sellUnitOfWork.Save();
         }

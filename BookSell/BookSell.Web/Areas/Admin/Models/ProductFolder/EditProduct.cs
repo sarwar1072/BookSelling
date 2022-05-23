@@ -1,5 +1,4 @@
-﻿using BookSell.Web.Models;
-using Framework.Services;
+﻿using Framework.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -10,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace BookSell.Web.Areas.Admin.Models.ProductFolder
 {
-    public class CreateProduct:ProductBaseModel
+    public class EditProduct:ProductBaseModel
     {
         [Key]
         public int Id { get; set; }
-          [Required]
+        [Required]
         public string Title { get; set; }
         public string Description { get; set; }
-         [Required]
+        [Required]
         public string ISBN { get; set; }
-         [Required]
+        [Required]
         public string Author { get; set; }
         [Required]
         [Range(1, 10000)]
@@ -36,32 +35,54 @@ namespace BookSell.Web.Areas.Admin.Models.ProductFolder
         public string ImageUrl { get; set; }
         [Required]
         public IFormFile formFile { get; set; }
-        public int CategoryId { get; set; }        
+        public int CategoryId { get; set; }
         public int CoverTypeId { get; set; }
 
-        public CreateProduct(IProductService productService) : base(productService) 
-        {            
-        }
-        public CreateProduct() : base() { }
-        public void AddProduct()
+
+        public EditProduct(IProductService productService) : base() { }
+        public EditProduct() : base() { }
+
+        public void Edit()
         {
-           // ImageUrl=_fileHelper.UploadFile(formFile);
             var product = new Framework.Entities.Product
             {
-                Title=Title,
-                Description=Description,
-                ISBN=ISBN,
-                Author=Author,
-                ListPrice=ListPrice,
-                Price=Price,
-                Price50=Price50,
-                Price100=Price100,
-                ImageUrl= ImageUrl,
-                CoverTypeId =CoverTypeId,
-                CategoryId=CategoryId
-            };
-            _productService.AddProduct(product);
+                Id = Id,
+            Title = Title,
+            Description = Description,
+            ISBN =ISBN,
+            Author = Author,
+            ListPrice = ListPrice,
+            Price = Price,
+            Price50 = Price50,
+            Price100 = Price100,
+            ImageUrl = ImageUrl,
+            CategoryId = CategoryId,
+            CoverTypeId = CoverTypeId,
+               };
+            _productService.EditProduct(product);
         }
+
+        public void Load(int id)
+        {
+            var entity = _productService.GetId(id);
+            if(entity != null)
+            {
+                Id = entity.Id;
+                Title = entity.Title;
+                Description = entity.Description;
+                ISBN = entity.ISBN;
+                Author = entity.Author;
+                ListPrice = entity.ListPrice;
+                Price = entity.Price;
+                Price50 = entity.Price50;
+                Price100 = entity.Price100;
+                ImageUrl = entity.ImageUrl;
+                CategoryId = entity.CategoryId;
+                CoverTypeId = entity.CoverTypeId;
+
+            }
+        }
+
 
         public IList<SelectListItem> ListOfCoverType()
         {
@@ -92,7 +113,6 @@ namespace BookSell.Web.Areas.Admin.Models.ProductFolder
             }
             return category;
         }
-
 
 
     }
