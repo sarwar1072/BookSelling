@@ -92,26 +92,26 @@ namespace BookSell.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        //[HttpPost, ValidateAntiForgeryToken]
-        //public IActionResult DeleteCover(int id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var model = new CoverTypeModel();
-        //        try
-        //        {
-        //            var title = model.Delete(id);
-        //            model.Response = new ResponseModel("delete ", ResponseType.Success);
-        //            return RedirectToAction("Index");
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            model.Response = new ResponseModel("fail", ResponseType.Failure);
-        //        }
-        //    }
-        //    return RedirectToAction("Index");
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult DeleteProduct(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = new ProductModel();
+                try
+                {
+                    var title = model.Delete(id);
+                    model.Response = new ResponseModel("delete ", ResponseType.Success);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    model.Response = new ResponseModel("fail", ResponseType.Failure);
+                }
+            }
+            return RedirectToAction("Index");
 
-        //}
+        }
 
         public IActionResult GetProduct()
         {

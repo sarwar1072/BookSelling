@@ -2,134 +2,141 @@
 @{
     ViewData["Title"] = "EditProduct";
 }
-<h1>EditProduct</h1>
 
 <form asp-area="Admin" asp-controller="Product" asp-action="EditProduct" asp-antiforgery="true"
       method="post" enctype="multipart/form-data">
-    <div class="col-8 pt-4">
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="Title"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
+    <div class="row p-3 border">
+        <div class="col-12 border-bottom ">
+            <h2 class="text-warning">@Model.Title</h2>
         </div>
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="ISBN"></label>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Title"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-8">
-                <input asp-for="ISBN" class="form-control" />
-                <span asp-validation-for="ISBN" class="text-danger"></span>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ISBN"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ISBN" class="form-control" />
+                    <span asp-validation-for="ISBN" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="Author"></label>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Author"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-8">
-                <input asp-for="Author" class="form-control" />
-                <span asp-validation-for="Author" class="text-danger"></span>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Description"></label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="Description"></label>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ListPrice"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ListPrice" class="form-control" />
+                    <span asp-validation-for="ListPrice" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-8">
-                <textarea asp-for="Description" class="form-control"></textarea>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Price"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="ListPrice"></label>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Price50"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Price50" class="form-control" />
+                    <span asp-validation-for="Price50" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-8">
-                <input asp-for="ListPrice" class="form-control" />
-                <span asp-validation-for="ListPrice" class="text-danger"></span>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Price100"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Price100" class="form-control" />
+                    <span asp-validation-for="Price100" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="Price"></label>
+            <div class="form-group row">
+                <div class="col-4">
+                    Category
+                </div>
+                <div class="col-sm-8">
+                    <select asp-for="CategoryId" asp-items="@Model.ListOfCategory()" class="form-control">
+                        <option>Please Select One</option>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-8">
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+            <div class="form-group row">
+                <div class="col-4">
+                    Category
+                </div>
+                <div class="col-sm-8">
+                    <select asp-for="CoverTypeId" asp-items="@Model.ListOfCoverType()" class="form-control">
+                        <option>Please Select One</option>
+                    </select>
+                    <span asp-validation-for="CoverTypeId" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="Price50"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Price50" class="form-control" />
-                <span asp-validation-for="Price50" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="Price100"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Price100" class="form-control" />
-                <span asp-validation-for="Price100" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-4">
-                Category
-            </div>
-            <div class="col-sm-8">
-                <select asp-for="CategoryId" asp-items="@Model.ListOfCategory()" class="form-control">
-                    <option>Please Select One</option>
-                </select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-4">
-                Category
-            </div>
-            <div class="col-sm-8">
-                <select asp-for="CoverTypeId" asp-items="@Model.ListOfCoverType()" class="form-control">
-                    <option>Please Select One</option>
-                </select>
-                <span asp-validation-for="CoverTypeId" class="text-danger"></span>
-            </div>
-        </div>
 
-        @*<div class="form-group row">
-            <div class="col-4">
-                Image
-            </div>
-            <div class="col-8">
-                <input type="file" name="formFile" id="uploadBox" multiple class="form-control" />
-            </div>
-        </div>*@
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="formFile" class="control-label">Form File</label>
+                </div>
+                <div class="col-8">
 
-        <div class="form-group">
-            <label asp-for="formFile" class="control-label"></label>
-            <input type="file" asp-for="formFile" class="form-control" style="border:none;padding: .375rem 0;" />
-            <span asp-validation-for="formFile" class="text-danger"></span>
-            <br />
-            @if (Model != null && !string.IsNullOrEmpty(Model.ImageUrl))
-            {
-                <input type="hidden" asp-for="ImageUrl" />
-                <img id="itemImage" src="@Model.ImageUrl" height="70" width="80" style="border:1px solid" />
-            }
-        </div>
+                    <input type="file" asp-for="formFile" class="form-control" style="border:none;padding: .375rem 0;" />
+                    <span asp-validation-for="formFile" class="text-danger"></span>
+                    <br />
 
-        <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-primary" />
-            &nbsp; <a asp-action="Index" asp-controller="Product" class="btn btn-warning">Cancel</a>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+
+                </div>
+                <div class="col-8">
+                    <input type="submit" value="Save" class="btn btn-primary" />&nbsp;
+                    <a asp-action="Index" asp-controller="Product" class="btn btn-warning">Cancel</a>
+                </div>
+            </div>
         </div>
+        @if (Model != null && !string.IsNullOrEmpty(Model.ImageUrl))
+        {
+
+            <input type="hidden" asp-for="ImageUrl" />
+            <img id="itemImage" src="@Model.ImageUrl" width="25%" height="30%" style="border-radius:5px; border:1px solid #bbb9b9 " />
+
+        }
 
     </div>
 </form>
-
 
 @section Scripts
 {
