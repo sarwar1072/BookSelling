@@ -24,8 +24,8 @@ namespace BookSell.Web.Areas.Admin.Controllers
             var model = new CreateCoverModel();
             return View(model);
         }
-        [HttpPost, ValidateAntiForgeryToken]
 
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult AddCoverType(CreateCoverModel model)
         {          
                 if (ModelState.IsValid)

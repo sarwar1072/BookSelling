@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using BookSell.Web.Areas.Admin.Models;
-using BookSell.Web.Areas.Admin.Models.ProductFolder;
+using BookSell.Web.Areas.Admin.Models.CompanyFolder;
 using BookSell.Web.Models;
 using Framework;
 using Microsoft.AspNetCore.Mvc;
@@ -12,36 +12,26 @@ using System.Threading.Tasks;
 namespace BookSell.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
-    public class ProductController : Controller
+    public class CompanyController : Controller
     {
-         IFileHelper _fileHelper;
-
-        public ProductController(IFileHelper fileHelper)
-        {
-            _fileHelper = fileHelper;
-
-        }
         public IActionResult Index()
         {
-            var model = Startup.AutofacContainer.Resolve<ProductModel>();
+            var model = Startup.AutofacContainer.Resolve<CompanyModel>();
             return View(model);
         }
-        public IActionResult AddProduct()
+        public IActionResult AddCompany()
         {
-            var model = new CreateProduct();
+            var model = new CreateCompany();
             return View(model);
         }
         [HttpPost, ValidateAntiForgeryToken]
-
-        public IActionResult AddProduct(CreateProduct model)
+        public IActionResult AddCompany(CreateCompany model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    model.ImageUrl = _fileHelper.UploadFile(model.formFile);
-                    model.AddProduct();
+                    model.Create();
                     model.Response = new ResponseModel("added successfully", ResponseType.Success);
                     return RedirectToAction("Index");
                 }
@@ -57,25 +47,19 @@ namespace BookSell.Web.Areas.Admin.Controllers
             }
             return View(model);
         }
-
-        public IActionResult EditProduct(int id)
+        public IActionResult EditCompany(int id)
         {
-            var model = new EditProduct();
+            var model = new EditCompany();
             model.Load(id);
             return View(model);
         }
         [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult EditProduct(EditProduct model)
+        public IActionResult EditCompany(EditCompany model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if (model.formFile != null)
-                    {
-                        _fileHelper.DeleteFile(model.ImageUrl);
-                        model.ImageUrl = _fileHelper.UploadFile(model.formFile);
-                    }
                     model.Edit();
                     model.Response = new ResponseModel("Edited successfully", ResponseType.Success);
                     return RedirectToAction("Index");
@@ -93,11 +77,11 @@ namespace BookSell.Web.Areas.Admin.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult DeleteProduct(int id)
+        public IActionResult DeleteCompany(int id)
         {
             if (ModelState.IsValid)
             {
-                var model = new ProductModel();                
+                var model = new CompanyModel();
                 try
                 {
                     var title = model.Delete(id);
@@ -112,12 +96,11 @@ namespace BookSell.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
 
         }
-
-        public IActionResult GetProduct()
+        public IActionResult GetComapny()
         {
             var tableModel = new DataTablesAjaxRequestModel(Request);
-            var model = Startup.AutofacContainer.Resolve<ProductModel>();
-            var data = model.GetProduct(tableModel);
+            var model = Startup.AutofacContainer.Resolve<CompanyModel>();
+            var data = model.GetCompany(tableModel);
             return Json(data);
         }
     }

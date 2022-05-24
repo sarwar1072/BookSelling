@@ -4,8 +4,7 @@
 }
 
 <form asp-area="Admin" asp-controller="Product" asp-action="AddProduct" asp-antiforgery="true"
-          
-      method="post" enctype="multipart/form-data">       
+                                                     method="post" enctype="multipart/form-data">       
     <div class="row p-3 border">
         <div class="col-12 border-bottom ">
             <h3 class="text-warning">Add Product</h3>
@@ -121,14 +120,12 @@
                 <div class="col-8">
                     <input type="submit" value="Save" class="btn btn-primary" />&nbsp;
                     <a asp-action="Index" asp-controller="Product" class="btn btn-warning">Cancel</a>
-                    @* <span asp-validation-for="Price100" class="text-danger"></span>*@
                 </div>
             </div>
 
         </div>
     </div>
 </form>
-
 
 @section Scripts
 {

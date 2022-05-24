@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using BookSell.Web.Areas.Admin.Models;
 using BookSell.Web.Areas.Admin.Models.CategoryFolder;
+using BookSell.Web.Areas.Admin.Models.CompanyFolder;
 using BookSell.Web.Areas.Admin.Models.CoverTypeFolder;
 using BookSell.Web.Areas.Admin.Models.ProductFolder;
 using BookSell.Web.Models;
@@ -31,14 +32,11 @@ namespace BookSell.Web
         {
             builder.RegisterType<CoverTypeModel>().AsSelf();
             builder.RegisterType<ResponseModel>().AsSelf();
-
             builder.RegisterType<CategoryModel>().AsSelf();
             builder.RegisterType<ProductModel>().AsSelf();
-
-
             builder.RegisterType<FileHelper>().As<IFileHelper>().InstancePerLifetimeScope();
-
-            //builder.RegisterType<CategoryModel>().AsSelf();
+            builder.RegisterType<CompanyModel>().AsSelf();
+          //  builder.RegisterType<CompanyModel>().AsSelf();
 
             //builder.RegisterType<AuthenticationService>().As<IAuthenticationService>()
             //         .InstancePerLifetimeScope();

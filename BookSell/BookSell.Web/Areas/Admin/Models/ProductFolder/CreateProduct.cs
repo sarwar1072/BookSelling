@@ -62,7 +62,7 @@ namespace BookSell.Web.Areas.Admin.Models.ProductFolder
             };
             _productService.AddProduct(product);
         }
-
+       
         public IList<SelectListItem> ListOfCoverType()
         {
             var cover = new List<SelectListItem>();
