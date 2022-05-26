@@ -15,6 +15,7 @@ namespace Framework.Services
                                                                                string searchText, string orderBy);
         IList<Category> GetCategories();
         IList<CoverType> GetCoverTypes();
+        IEnumerable<Product> GetForConsumer();
 
     }
 }

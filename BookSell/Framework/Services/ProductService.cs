@@ -2,6 +2,7 @@
 using Framework.UnitOfWorkPro;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Framework.Services
@@ -57,6 +58,11 @@ namespace Framework.Services
             return _sellUnitOfWork.ProductRepository.GetById(id);
         }
 
+        public IEnumerable<Product> GetForConsumer()
+        {
+            return _sellUnitOfWork.ProductRepository.GetAll().OrderBy(Product => Product.CategoryId).ThenBy(
+              Product  => Product.CoverTypeId);
+        }
         public (IList<Product> product ,int total,int totalDisplay)GetProduct(int pageindex,int pagesize,
                                                                                string searchText,string orderBy)
         {

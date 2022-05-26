@@ -5,6 +5,7 @@ using BookSell.Web.Areas.Admin.Models.CompanyFolder;
 using BookSell.Web.Areas.Admin.Models.CoverTypeFolder;
 using BookSell.Web.Areas.Admin.Models.ProductFolder;
 using BookSell.Web.Models;
+using Framework.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -36,7 +37,9 @@ namespace BookSell.Web
             builder.RegisterType<ProductModel>().AsSelf();
             builder.RegisterType<FileHelper>().As<IFileHelper>().InstancePerLifetimeScope();
             builder.RegisterType<CompanyModel>().AsSelf();
-          //  builder.RegisterType<CompanyModel>().AsSelf();
+            builder.RegisterType<Product>().AsSelf();
+
+            //  builder.RegisterType<CompanyModel>().AsSelf();
 
             //builder.RegisterType<AuthenticationService>().As<IAuthenticationService>()
             //         .InstancePerLifetimeScope();

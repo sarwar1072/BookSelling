@@ -105,9 +105,9 @@ namespace Membership.Services
             {
                 throw new Exception(nameof(ApplicationUser));
             }
-
             return user;
         }
+
         public async Task<Guid> Add(ApplicationUser entity, Guid userRoleId, string newPassword)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))

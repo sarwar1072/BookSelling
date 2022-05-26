@@ -81,6 +81,7 @@
     <div class="container">
         <main role="main" class="pb-3">
             @*  <partial name="_Notifications">*@
+
             @RenderBody()
         </main>
     </div>
@@ -99,8 +100,9 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/e19c476714.js"></script>
     @RenderSection("Scripts", required: false)
+    @*<partial name="_ToasterMessage" model="@Model.Response" />*@
 
-    <partial name="_ToasterMessage" model="@Model.Response" />
+
     <script>
         $(function () {
             $("#response-alert").fadeTo(5000, 500).slideUp(500, function () {
