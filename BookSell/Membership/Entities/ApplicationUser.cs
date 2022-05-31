@@ -1,5 +1,4 @@
-﻿using Framework.Entities;
-using Membership.Data;
+﻿using Membership.Data;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -16,9 +15,8 @@ namespace Membership.Entities
         public string State { get; set; }
         public string PostalCode { get; set; }
         //public int? CompanyId { get; set; }
-        ////[ForeignKey("CompanyId")]
+        //[ForeignKey("CompanyId")]
         //public Company Company { get; set; }
-        
         public string ImageUrl { get; set; }
         public bool Status { get; set; }
         public string FullName { get; set; }

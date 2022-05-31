@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Membership.Contexts;
+using Membership.Data;
 
 namespace BookSell.Web
 {
@@ -154,6 +155,9 @@ namespace BookSell.Web
                 //    pattern: "{controller=Home}/{action=Index}/{id?}");
                 //endpoints.MapRazorPages();
             });
+            //accountSeed.MigrateAsync().Wait();
+            //accountSeed.SeedAsync().Wait();
+
         }
     }
 }
