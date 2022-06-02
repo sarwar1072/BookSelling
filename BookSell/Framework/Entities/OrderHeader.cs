@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer;
+using Membership.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,13 +12,10 @@ namespace Framework.Entities
         [Key]
         public int Id { get; set; }
         public Guid ApplicationUserId { get; set; }
-        //[ForeignKey("ApplicationUserId")]
-        //public ApplicationUser ApplicationUser { get; set; }
-        //[Required]
+      // [ForeignKey("ApplicationUserId")]
+      // public ApplicationUser ApplicationUser { get; set; }
         public DateTime OrderDate { get; set; }
-        [Required]
         public DateTime ShippingDate { get; set; }
-        [Required]
         public Double OrderTotal { get; set; }
         public string TrackingNumber { get; set; }
         public string Carrier { get; set; }
@@ -26,17 +24,11 @@ namespace Framework.Entities
         public DateTime PaymentDate { get; set; }
         public DateTime PaymentDueDate { get; set; }
         public string TransactionId { get; set; }
-       // [Required]
         public string PhoneNumber { get; set; }
-       // [Required]
-        public string StreetAddress { get; set; }
-        //[Required]
+        public string StreetAddress { get; set; }      
         public string City { get; set; }
-      //  [Required]
         public string State { get; set; }
-       // [Required]
         public string PostalCode { get; set; }
-        //[Required]
         public string Name { get; set; }
     }
 }

@@ -17,5 +17,7 @@ namespace Framework.Services
         IList<CoverType> GetCoverTypes();
         IEnumerable<Product> GetForConsumer();
 
+        Product GetProductWithChild(int id);
+
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BookSell.Web.Migrations
+namespace BookSell.Web.Migrations.Framework
 {
-    public partial class num1 : Migration
+    public partial class fram : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

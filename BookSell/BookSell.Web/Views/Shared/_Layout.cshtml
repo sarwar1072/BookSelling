@@ -1,5 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
+@using Framework
+@using Membership.Data
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,18 +62,24 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Admin" asp-controller="BrainTree" asp-action="Index">BrainTree</a>
                         </li>
-                        <!--<li style="color:white;">
-                            <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
-
-                                <i class="fas fa-shopping-cart"></i> &nbsp;-->
-                        @*(@count)*@
-                        <!--</a>
-                        </li>-->
+                        @if (HttpContextAccessor.HttpContext.Session.GetInt32(SD.ssShoppingCart) != null)
+                        {
                         <li style="color:white;">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-shopping-cart"></i> &nbsp; (0)
+                            <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
+                                @{ var count = HttpContextAccessor.HttpContext.Session.GetInt32(SD.ssShoppingCart); }
+                                <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
                             </a>
-                        </li>
+                        </li> 
+                    
+                       }
+                       else
+                           {
+                            <li style="color:white;">
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i> &nbsp; (0)
+                                </a>
+                            </li>
+                          }
 
                     </ul>
                 </div>
@@ -101,11 +109,11 @@
     <script src="https://kit.fontawesome.com/e19c476714.js"></script>
     @RenderSection("Scripts", required: false)
 
-    @if (User.IsInRole("Individual Customer")) {
     
-        <partial name="_ToasterMessage" model="@Model.Response" />
+    
+        @*<partial name="_ToasterMessage" model="@Model.Response" />*@
          
-    }
+    
 
     <script>
         $(function () {

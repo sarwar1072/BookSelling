@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BookSell.Web.Migrations.ApplicationDb
+namespace BookSell.Web.Migrations
 {
-    public partial class addIdentity : Migration
+    public partial class num1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

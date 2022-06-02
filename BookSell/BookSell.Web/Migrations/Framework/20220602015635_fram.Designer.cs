@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BookSell.Web.Migrations
+namespace BookSell.Web.Migrations.Framework
 {
     [DbContext(typeof(FrameworkContext))]
-    [Migration("20220514063339_num1")]
-    partial class num1
+    [Migration("20220602015635_fram")]
+    partial class fram
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

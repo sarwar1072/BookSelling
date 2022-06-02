@@ -69,7 +69,10 @@ namespace Framework.Services
             var result = _sellUnitOfWork.ProductRepository.GetDynamic(null, orderBy, "Category,CoverType", pageindex, pagesize,true);
             return (result.data, result.total, result.totalDisplay);
         }
-
+        public Product GetProductWithChild(int id)
+        {
+            return _sellUnitOfWork.ProductRepository.GetFirstOrDefault(x => x.Id == id, "Category,CoverType");
+        }
         public IList<Category> GetCategories()
         {
             return _sellUnitOfWork.CategoryRepository.GetAll();
