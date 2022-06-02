@@ -58,8 +58,6 @@ namespace BookSell.Web.Areas.Customer.Controllers
                    u => u.ApplicationUserId == shoppingCart.ApplicationUserId && u.ProductId == shoppingCart.ProductId
                    , includeProperties: "Product"
                    );
-
-
                 if (cartFromDb == null)
                 {
                     //no records exists in database for that product for that user
