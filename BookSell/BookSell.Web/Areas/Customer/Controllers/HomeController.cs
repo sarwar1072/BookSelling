@@ -2,6 +2,7 @@
 using Framework.Entities;
 using Framework.Services;
 using Framework.UnitOfWorkPro;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -40,7 +41,7 @@ namespace BookSell.Web.Areas.Customer.Controllers
 
             return View(cartObj);              
         }
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Details(ShoppingCart shoppingCart)
@@ -77,10 +78,20 @@ namespace BookSell.Web.Areas.Customer.Controllers
                 HttpContext.Session.SetInt32(SD.ssShoppingCart, count);
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                var productFromDb = _sellUnitOfWork.ProductRepository.
+                        GetFirstOrDefault(u => u.Id == shoppingCart.ProductId, includeProperties: "Category,CoverType");
+                ShoppingCart cartObj = new ShoppingCart()
+                {
+                    Product = productFromDb,
+                    ProductId = productFromDb.Id
+                };
+                return View(cartObj);
+            }
 
-            return View();
+
         }
-
 
     }
 }
