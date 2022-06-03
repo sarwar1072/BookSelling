@@ -8,16 +8,14 @@ using System.Threading.Tasks;
 
 namespace Membership.Entities
 {
-    public class ApplicationUser : IdentityUser<string>
+    public class ApplicationUser : IdentityUser
     {
        // public string Id { get; set; }
+      //  public string  ApplicationUserId { get; set; }
         public string StreetAddress { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public string PostalCode { get; set; }
-        //public int? CompanyId { get; set; }
-        //[ForeignKey("CompanyId")]
-        //public Company Company { get; set; }
+        public string PostalCode { get; set; }       
         public string ImageUrl { get; set; }
         public bool Status { get; set; }
         public string FullName { get; set; }

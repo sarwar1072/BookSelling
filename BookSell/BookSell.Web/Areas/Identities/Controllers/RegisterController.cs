@@ -47,7 +47,7 @@ namespace BookSell.Web.Areas.Identities.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-
+                    //Id=model.Id,
                     StreetAddress = model.StreetAddress,
                     City = model.City,
                     State = model.State,

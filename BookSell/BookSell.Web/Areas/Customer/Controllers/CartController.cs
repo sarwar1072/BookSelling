@@ -2,6 +2,7 @@
 using Framework;
 using Framework.Entities;
 using Framework.UnitOfWorkPro;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,28 +18,26 @@ namespace BookSell.Web.Areas.Customer.Controllers
         ISellUnitOfWork _sellUnitOfWork;
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
-        Guid guid;
-        public CartController(ISellUnitOfWork sellUnitOfWork)
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public CartController(ISellUnitOfWork sellUnitOfWork
+            , UserManager<IdentityUser> userManager)
         {
             _sellUnitOfWork = sellUnitOfWork;
+            _userManager = userManager;
         }
-        // public IActionResult Index()
-        //{
-        //}
-        //[HttpPost]
-        public IActionResult Index(ShoppingCart shoppingCart)
+        
+        public IActionResult Index( )
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-           // shoppingCart.ApplicationUserId = Guid.Parse(claim.Value);
-            //var claimId = claim.Value;
-           // guid =Guid.Parse(claim.Value);
+           
            var  ShoppingCartVM = new ShoppingCartVM()
             {
                 OrderHeader = new OrderHeader(),
-                //ListCart = _sellUnitOfWork.ShoppingCartRepository.GetFirstOrDefault(x=>x.ApplicationUserId== shoppingCart.ApplicationUserId,
-                //includeProperties:"Product")
-            };
+               //ListCart = _sellUnitOfWork.ShoppingCartRepository.GetFirstOrDefault(u => u.ApplicationUserId == claim.Value,
+               //  "Product")
+           };
             ShoppingCartVM.OrderHeader.OrderTotal = 0;
             //ShoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser
             //                                            .GetFirstOrDefault(u => u.Id == claim.Value, 

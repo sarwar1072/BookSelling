@@ -8,6 +8,7 @@ namespace BookSell.Web.Areas.Identities.Models
 {
     public class RegisterModel
     {
+        public string Id { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

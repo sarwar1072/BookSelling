@@ -9,7 +9,9 @@
             <div class="card">
                 <div class="card-body px-lg-5 pt-4">
                     <form asp-controller="Register" asp-action="Registration" method="post">
-                       
+
+                        @*<input hidden asp-for="Id" />*@
+
                         <div class="py-2">
                             <input asp-for="Name" placeholder="Name" class="form-control" />
                             <span asp-validation-for="Name" class="text-danger"></span>
@@ -55,7 +57,7 @@
                             </div>
 
                         </div>
-                        
+
                         <div class="py-2">
                             <button type="submit" class="btn btn-success form-control">Register</button>
                         </div>
