@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 namespace Membership.Entities
 {
     public class UserToken
-        : IdentityUserToken<Guid>
+        : IdentityUserToken<string>
     {
         public UserToken()
             : base()

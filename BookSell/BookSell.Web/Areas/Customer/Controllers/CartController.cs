@@ -17,20 +17,27 @@ namespace BookSell.Web.Areas.Customer.Controllers
         ISellUnitOfWork _sellUnitOfWork;
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
+        Guid guid;
         public CartController(ISellUnitOfWork sellUnitOfWork)
         {
             _sellUnitOfWork = sellUnitOfWork;
-
         }
-        public IActionResult Index()
+        // public IActionResult Index()
+        //{
+        //}
+        //[HttpPost]
+        public IActionResult Index(ShoppingCart shoppingCart)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            Guid guid = Guid.Parse(claim.Value);
-            ShoppingCartVM = new ShoppingCartVM()
+           // shoppingCart.ApplicationUserId = Guid.Parse(claim.Value);
+            //var claimId = claim.Value;
+           // guid =Guid.Parse(claim.Value);
+           var  ShoppingCartVM = new ShoppingCartVM()
             {
                 OrderHeader = new OrderHeader(),
-                ListCart = _sellUnitOfWork.ShoppingCartRepository.GetFirstOrDefault(u => u.ApplicationUserId ==guid,"Product")
+                //ListCart = _sellUnitOfWork.ShoppingCartRepository.GetFirstOrDefault(x=>x.ApplicationUserId== shoppingCart.ApplicationUserId,
+                //includeProperties:"Product")
             };
             ShoppingCartVM.OrderHeader.OrderTotal = 0;
             //ShoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser
@@ -49,5 +56,7 @@ namespace BookSell.Web.Areas.Customer.Controllers
             }
             return View(ShoppingCartVM);
         }
+
+
     }
 }

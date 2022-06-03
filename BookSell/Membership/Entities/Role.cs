@@ -6,7 +6,7 @@ using Membership.Data;
 
 namespace Membership.Entities
 {
-    public class Role : IdentityRole<Guid>
+    public class Role : IdentityRole<string>
     {
         public EnumRoles RoleStatus { get; set; }
 

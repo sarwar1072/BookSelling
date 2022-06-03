@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Membership.Contexts
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, Guid,
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, string,
         UserClaim, ApplicationUserRole, UserLogin, RoleClaim, UserToken>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

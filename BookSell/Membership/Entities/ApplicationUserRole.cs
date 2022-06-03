@@ -6,7 +6,7 @@ using System.Text;
 namespace Membership.Entities
 {
     public class ApplicationUserRole
-      : IdentityUserRole<Guid>
+      : IdentityUserRole<string>
     {
         public ApplicationUser User { get; set; }
         public Role Role { get; set; }

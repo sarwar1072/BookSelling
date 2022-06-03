@@ -24,9 +24,9 @@ namespace Membership.Data
             _userManager = userManager; 
             _roleManager = roleManager;
 
-            _adminUser = new ApplicationUser(IdenSD.Role_Admin,"sarwar","13579","sarwar.cse.diu@gmail.com");
+            _adminUser = new ApplicationUser("Admin","sarwar","13579","sarwar.cse.diu@gmail.com");
            
-            _adminRole = new Role(IdenSD.Role_Admin);
+            _adminRole = new Role("Admin");
            
         }
 

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 namespace Membership.Entities
 {
     public class RoleClaim
-        : IdentityRoleClaim<Guid>
+        : IdentityRoleClaim<string>
     {
         public RoleClaim()
             : base()

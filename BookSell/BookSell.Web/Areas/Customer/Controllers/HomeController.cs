@@ -38,7 +38,6 @@ namespace BookSell.Web.Areas.Customer.Controllers
                 ProductId = productFromDb.Id,
                 Product=productFromDb,
             };
-
             return View(cartObj);              
         }
         [Authorize]
@@ -52,7 +51,7 @@ namespace BookSell.Web.Areas.Customer.Controllers
                 //then we will add to cart
                 var claimsIdentity = (ClaimsIdentity)User.Identity;
                 var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-                shoppingCart.ApplicationUserId = Guid.Parse(claim.Value);
+                shoppingCart.ApplicationUserId = claim.Value;
 
                 ShoppingCart cartFromDb = _sellUnitOfWork.ShoppingCartRepository.GetFirstOrDefault(
                    u => u.ApplicationUserId == shoppingCart.ApplicationUserId && u.ProductId == shoppingCart.ProductId
@@ -86,9 +85,7 @@ namespace BookSell.Web.Areas.Customer.Controllers
                     ProductId = productFromDb.Id
                 };
                 return View(cartObj);
-            }
-
-
+            }             
         }
 
     }

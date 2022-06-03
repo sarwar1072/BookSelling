@@ -95,7 +95,7 @@ namespace Membership.Services
             return (result, 0, 0);
         }
 
-        public ApplicationUser GetById(Guid id)
+        public ApplicationUser GetById(string id)
         {
             var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
 
@@ -108,7 +108,7 @@ namespace Membership.Services
             return user;
         }
 
-        public async Task<Guid> Add(ApplicationUser entity, Guid userRoleId, string newPassword)
+        public async Task<string> Add(ApplicationUser entity, string userRoleId, string newPassword)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
@@ -147,52 +147,52 @@ namespace Membership.Services
             }
         }
 
-        public async Task<Guid> Add(ApplicationUser entity, string userRoleName, string newPassword)
-        {
-            using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-            {
-                try
-                {
-                    entity.RoleStatus = EnumRoles.User;
-                    entity.CreationTime = DateTime.Now;
-                    entity.CreatedBy = _currentUserService.UserId;
+        //public async Task<string> Add(ApplicationUser entity, string userRoleName, string newPassword)
+        //{
+        //    using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+        //    {
+        //        try
+        //        {
+        //            entity.RoleStatus = EnumRoles.User;
+        //            entity.CreationTime = DateTime.Now;
+        //            entity.CreatedBy = _currentUserService.UserId;
 
-                    var userSaveResult = await _userManager.CreateAsync(entity, newPassword);
+        //            var userSaveResult = await _userManager.CreateAsync(entity, newPassword);
 
-                    if (!userSaveResult.Succeeded)
-                    {
-                        throw new Exception();
-                    };
+        //            if (!userSaveResult.Succeeded)
+        //            {
+        //                throw new Exception();
+        //            };
 
-                    // Add New User Role
-                    var user = await _userManager.FindByNameAsync(entity.UserName);
-                    var role = await _roleManager.FindByNameAsync(userRoleName);
+        //            // Add New User Role
+        //            var user = await _userManager.FindByNameAsync(entity.UserName);
+        //            var role = await _roleManager.FindByNameAsync(userRoleName);
 
-                    if (role == null)
-                    {
-                        throw new Exception();
-                    }
+        //            if (role == null)
+        //            {
+        //                throw new Exception();
+        //            }
 
-                    var roleSaveResult = await _userManager.AddToRoleAsync(user, role.Name);
+        //            var roleSaveResult = await _userManager.AddToRoleAsync(user, role.Name);
 
-                    if (!roleSaveResult.Succeeded)
-                    {
-                        throw new Exception();
-                    };
+        //            if (!roleSaveResult.Succeeded)
+        //            {
+        //                throw new Exception();
+        //            };
 
-                    scope.Complete();
+        //            scope.Complete();
 
-                    return user.Id;
-                }
-                catch (Exception ex)
-                {
-                    scope.Dispose();
-                    throw;
-                }
-            }
-        }
+        //            return user.Id;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            scope.Dispose();
+        //            throw;
+        //        }
+        //    }
+        //}
 
-        public async Task<Guid> Update(ApplicationUser entity, Guid UserRoleId)
+        public async Task<string> Update(ApplicationUser entity, string UserRoleId)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
@@ -243,7 +243,7 @@ namespace Membership.Services
             }
         }
 
-        public async Task<Guid> Update(ApplicationUser entity)
+        public async Task<string> Update(ApplicationUser entity)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
@@ -278,7 +278,7 @@ namespace Membership.Services
                 }
             }
         }
-        public async Task<string> Delete(Guid id)
+        public async Task<string> Delete(string id)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
@@ -305,7 +305,7 @@ namespace Membership.Services
             }
 
         }
-        public async Task<bool> ChangePassword(Guid id, string CurrentPassword, string NewPassword)
+        public async Task<bool> ChangePassword(string id, string CurrentPassword, string NewPassword)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
