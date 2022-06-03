@@ -64,12 +64,10 @@ namespace BookSell.Web.Areas.Customer.Controllers
             _sellUnitOfWork.Save();
             return RedirectToAction(nameof(Index));
         }
-
         public IActionResult Minus(int cartId)
         {
             var cart = _sellUnitOfWork.ShoppingCartRepository.GetFirstOrDefault
                             (c => c.Id == cartId, includeProperties: "Product");
-
             if (cart.Count == 1)
             {
                 var cnt = _sellUnitOfWork.ShoppingCartRepository.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
@@ -84,7 +82,6 @@ namespace BookSell.Web.Areas.Customer.Controllers
                                     cart.Product.Price50, cart.Product.Price100);
                 _sellUnitOfWork.Save();
             }
-
             return RedirectToAction(nameof(Index));
         }
 
