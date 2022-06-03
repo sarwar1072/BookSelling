@@ -18,13 +18,12 @@ namespace BookSell.Web.Areas.Customer.Controllers
         ISellUnitOfWork _sellUnitOfWork;
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
-        private readonly UserManager<IdentityUser> _userManager;
+       // private readonly UserManager<IdentityUser> _userManager;
 
-        public CartController(ISellUnitOfWork sellUnitOfWork
-            , UserManager<IdentityUser> userManager)
+        public CartController(ISellUnitOfWork sellUnitOfWork)
         {
             _sellUnitOfWork = sellUnitOfWork;
-            _userManager = userManager;
+            
         }
         
         public IActionResult Index( )
@@ -35,13 +34,11 @@ namespace BookSell.Web.Areas.Customer.Controllers
            var  ShoppingCartVM = new ShoppingCartVM()
             {
                 OrderHeader = new OrderHeader(),
-               //ListCart = _sellUnitOfWork.ShoppingCartRepository.GetFirstOrDefault(u => u.ApplicationUserId == claim.Value,
-               //  "Product")
+               ListCart = _sellUnitOfWork.ShoppingCartRepository.GetAll(u => u.ApplicationUserId == claim.Value,
+                 includeProperties:"Product")
            };
             ShoppingCartVM.OrderHeader.OrderTotal = 0;
-            //ShoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser
-            //                                            .GetFirstOrDefault(u => u.Id == claim.Value, 
-            //                                            includeProperties: "Company");
+           
             foreach (var list in ShoppingCartVM.ListCart)
             {
                 list.Price = SD.GetPriceBasedOnQuantity(list.Count, list.Product.Price,

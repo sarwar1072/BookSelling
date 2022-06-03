@@ -8,7 +8,7 @@ namespace BookSell.Web.Areas.Customer.Models
 {
     public class ShoppingCartVM
     {
-        public IEnumerable<ShoppingCart> ListCart { get; set; }
+        public IList<ShoppingCart> ListCart { get; set; }
         public OrderHeader OrderHeader { get; set; }
     }
 }

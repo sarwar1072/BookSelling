@@ -8,46 +8,6 @@ namespace BookSell.Web.Migrations.Framework
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ApplicationUser",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(nullable: true),
-                    NormalizedUserName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    NormalizedEmail = table.Column<string>(nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    StreetAddress = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    PostalCode = table.Column<string>(nullable: true),
-                    ImageUrl = table.Column<string>(nullable: true),
-                    Status = table.Column<bool>(nullable: false),
-                    FullName = table.Column<string>(nullable: true),
-                    Gender = table.Column<string>(nullable: true),
-                    LastPassword = table.Column<string>(nullable: true),
-                    RoleStatus = table.Column<int>(nullable: false),
-                    CreatedBy = table.Column<Guid>(nullable: true),
-                    CreationTime = table.Column<DateTime>(nullable: false),
-                    IsActiveRole = table.Column<bool>(nullable: false),
-                    IsBlockedRole = table.Column<bool>(nullable: false),
-                    IsDeletedRole = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ApplicationUser", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -93,25 +53,6 @@ namespace BookSell.Web.Migrations.Framework
                 });
 
             migrationBuilder.CreateTable(
-                name: "Role",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    NormalizedName = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    RoleStatus = table.Column<int>(nullable: false),
-                    CreatedBy = table.Column<Guid>(nullable: true),
-                    CreationTime = table.Column<DateTime>(nullable: false),
-                    IsActiveRole = table.Column<bool>(nullable: false),
-                    IsDeletedRole = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Role", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "OrderHeaders",
                 columns: table => new
                 {
@@ -138,12 +79,6 @@ namespace BookSell.Web.Migrations.Framework
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderHeaders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OrderHeaders_ApplicationUser_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "ApplicationUser",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -179,31 +114,6 @@ namespace BookSell.Web.Migrations.Framework
                         principalTable: "CoverTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ApplicationUserRole",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    UserId = table.Column<string>(nullable: true),
-                    RoleId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ApplicationUserRole", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ApplicationUserRole_Role_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Role",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ApplicationUserRole_ApplicationUser_UserId",
-                        column: x => x.UserId,
-                        principalTable: "ApplicationUser",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -248,28 +158,12 @@ namespace BookSell.Web.Migrations.Framework
                 {
                     table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ShoppingCarts_ApplicationUser_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "ApplicationUser",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_ShoppingCarts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ApplicationUserRole_RoleId",
-                table: "ApplicationUserRole",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ApplicationUserRole_UserId",
-                table: "ApplicationUserRole",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_OrderId",
@@ -282,11 +176,6 @@ namespace BookSell.Web.Migrations.Framework
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderHeaders_ApplicationUserId",
-                table: "OrderHeaders",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
@@ -297,11 +186,6 @@ namespace BookSell.Web.Migrations.Framework
                 column: "CoverTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCarts_ApplicationUserId",
-                table: "ShoppingCarts",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCarts_ProductId",
                 table: "ShoppingCarts",
                 column: "ProductId");
@@ -309,9 +193,6 @@ namespace BookSell.Web.Migrations.Framework
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "ApplicationUserRole");
-
             migrationBuilder.DropTable(
                 name: "Companies");
 
@@ -322,16 +203,10 @@ namespace BookSell.Web.Migrations.Framework
                 name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
-                name: "Role");
-
-            migrationBuilder.DropTable(
                 name: "OrderHeaders");
 
             migrationBuilder.DropTable(
                 name: "Products");
-
-            migrationBuilder.DropTable(
-                name: "ApplicationUser");
 
             migrationBuilder.DropTable(
                 name: "Categories");

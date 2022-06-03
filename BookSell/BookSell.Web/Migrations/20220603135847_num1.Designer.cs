@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookSell.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220603124236_num1")]
+    [Migration("20220603135847_num1")]
     partial class num1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,9 +138,6 @@ namespace BookSell.Web.Migrations
 
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId", "RoleId");
 
