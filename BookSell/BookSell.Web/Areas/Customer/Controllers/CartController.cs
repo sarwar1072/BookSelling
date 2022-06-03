@@ -2,6 +2,7 @@
 using Framework;
 using Framework.Entities;
 using Framework.UnitOfWorkPro;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -52,6 +53,42 @@ namespace BookSell.Web.Areas.Customer.Controllers
             }
             return View(ShoppingCartVM);
         }
+
+        public IActionResult Plus(int cartId)
+        {
+            var cart = _sellUnitOfWork.ShoppingCartRepository.GetFirstOrDefault
+                            (c => c.Id == cartId, includeProperties: "Product");
+            cart.Count += 1;
+            cart.Price = SD.GetPriceBasedOnQuantity(cart.Count, cart.Product.Price,
+                                    cart.Product.Price50, cart.Product.Price100);
+            _sellUnitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Minus(int cartId)
+        {
+            var cart = _sellUnitOfWork.ShoppingCartRepository.GetFirstOrDefault
+                            (c => c.Id == cartId, includeProperties: "Product");
+
+            if (cart.Count == 1)
+            {
+                var cnt = _sellUnitOfWork.ShoppingCartRepository.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
+                _sellUnitOfWork.ShoppingCartRepository.Remove(cart);
+                _sellUnitOfWork.Save();
+                HttpContext.Session.SetInt32(SD.ssShoppingCart, cnt - 1);
+            }
+            else
+            {
+                cart.Count -= 1;
+                cart.Price = SD.GetPriceBasedOnQuantity(cart.Count, cart.Product.Price,
+                                    cart.Product.Price50, cart.Product.Price100);
+                _sellUnitOfWork.Save();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+       
 
 
     }
