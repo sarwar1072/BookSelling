@@ -240,7 +240,7 @@ namespace DataAccessLayer
                     return query.ToList();
             }
         }
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, 
+        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
             IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null)
         {
             IQueryable<TEntity> query = _dbSet;
@@ -249,15 +249,13 @@ namespace DataAccessLayer
             {
                 query = query.Where(filter);
             }
-
             if (includeProperties != null)
             {
                 foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProp);
                 }
-            }
-
+            }          
             if (orderBy != null)
             {
                 return orderBy(query).ToList();
@@ -267,12 +265,10 @@ namespace DataAccessLayer
         public TEntity GetFirstOrDefault(Expression<Func<TEntity, bool>> filter = null, string includeProperties = null)
         {
             IQueryable< TEntity> query = _dbSet;
-
             if (filter != null)
             {
                 query = query.Where(filter);
             }
-
             if (includeProperties != null)
             {
                 foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))

@@ -59,7 +59,7 @@ namespace DataAccessLayer
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null
             , bool isTrackingOff = false);
 
-
+      
         List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
             IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null);
 

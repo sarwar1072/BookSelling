@@ -84,7 +84,6 @@ namespace BookSell.Web.Areas.Customer.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-
         public IActionResult Remove(int cartId)
         {
             var cart = _sellUnitOfWork.ShoppingCartRepository.GetFirstOrDefault
