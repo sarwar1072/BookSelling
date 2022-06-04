@@ -85,7 +85,17 @@ namespace BookSell.Web.Areas.Customer.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-       
+        public IActionResult Remove(int cartId)
+        {
+            var cart = _sellUnitOfWork.ShoppingCartRepository.GetFirstOrDefault
+                            (c => c.Id == cartId, includeProperties: "Product");
+
+            var cnt = _sellUnitOfWork.ShoppingCartRepository.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
+            _sellUnitOfWork.ShoppingCartRepository.Remove(cart);
+            _sellUnitOfWork.Save();
+            HttpContext.Session.SetInt32(SD.ssShoppingCart, cnt - 1);
+            return RedirectToAction(nameof(Index));
+        }
 
 
     }
