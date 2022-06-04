@@ -1,14 +1,17 @@
 ﻿@model RegisterModel
 
 @{ ViewData["Title"] = "Registration"; }
-
+@{
+    var returnUrl = Context.Request.Query["ReturnUrl"];
+}
 <div class="py-4">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="row form-group">
         <div class="col-8 offset-2">
             <div class="card">
                 <div class="card-body px-lg-5 pt-4">
-                    <form asp-controller="Register" asp-action="Registration" method="post">
+                    <form asp-controller="Register" asp-action="Registration" asp-route-returnUrl="@Model.ReturnUrl"
+                          method="post">
 
                         @*<input hidden asp-for="Id" />*@
 
@@ -61,7 +64,7 @@
                         <div class="py-2">
                             <button type="submit" class="btn btn-success form-control">Register</button>
                         </div>
-                    </form>                 
+                    </form>
                 </div>
             </div>
         </div>

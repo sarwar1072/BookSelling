@@ -47,7 +47,6 @@ namespace BookSell.Web.Areas.Identities.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    //Id=model.Id,
                     StreetAddress = model.StreetAddress,
                     City = model.City,
                     State = model.State,
@@ -59,10 +58,19 @@ namespace BookSell.Web.Areas.Identities.Controllers
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, IdenSD.Role_Admin);
+                }
 
+                if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                {
+                    return RedirectToPage("RegisterConfirmation", new { email = model.Email, returnUrl = returnUrl });
+                }
+                else
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return LocalRedirect(returnUrl);
                 }
             }
-                return View(returnUrl);
+            return View(model);
         }
 
 

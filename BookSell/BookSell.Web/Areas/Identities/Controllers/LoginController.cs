@@ -47,12 +47,15 @@ namespace BookSell.Web.Areas.Identities.Controllers
               //temporary basis.later this logic would be change
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Product", new { area = "Admin" });
+                    if (!string.IsNullOrEmpty(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    ;
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(Input);
+                    return RedirectToAction("Index", "Home", new { area = "Customer" });
                 }
 
             }
