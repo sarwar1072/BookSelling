@@ -13,20 +13,20 @@ namespace Membership.Services
 {
     public class UserService : IUserService
     {
-        //private readonly UserManager _userManager;
-        //private readonly RoleManager _roleManager;
-        //private readonly ICurrentUserService _currentUserService;
+        private readonly UserManager _userManager;
+        private readonly RoleManager _roleManager;
+        private readonly ICurrentUserService _currentUserService;
 
-        //public UserService(
-        //    UserManager userManager,
-        //    RoleManager roleManager,
-        //    ICurrentUserService currentUserService
-        //    )
-        //{
-        //    _userManager = userManager;
-        //    _roleManager = roleManager;
-        //    _currentUserService = currentUserService;
-        //}
+        public UserService(
+            UserManager userManager,
+            RoleManager roleManager,
+            ICurrentUserService currentUserService
+            )
+        {
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _currentUserService = currentUserService;
+        }
 
         //public (IList<ApplicationUser> records,int total,int totalDisplay) GetAll(int pageIndex,int pageSize,string searchText,string sortText)
         //{
@@ -95,18 +95,18 @@ namespace Membership.Services
         //    return (result, 0, 0);
         //}
 
-        //public ApplicationUser GetById(string id)
-        //{
-        //    var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
+        public ApplicationUser GetById(string id)
+        {
+            var query = _userManager.Users.AsQueryable();
 
-        //    var user = query.FirstOrDefault(u => u.Id == id);
+            var user = query.FirstOrDefault(u => u.Id == id);
 
-        //    if (user == null)
-        //    {
-        //        throw new Exception(nameof(ApplicationUser));
-        //    }
-        //    return user;
-        //}
+            if (user == null)
+            {
+                throw new Exception(nameof(ApplicationUser));
+            }
+            return user;
+        }
 
         //public async Task<string> Add(ApplicationUser entity, string userRoleId, string newPassword)
         //{

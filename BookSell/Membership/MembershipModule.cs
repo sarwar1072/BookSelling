@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Membership.Contexts;
+using Membership.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,9 @@ namespace Membership
                 .WithParameter("connectionString", _connectionString)
                 .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<UserService>().As<IUserService>()
+                     .InstancePerLifetimeScope();
 
             base.Load(builder);
         }

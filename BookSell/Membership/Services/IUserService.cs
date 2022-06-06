@@ -11,7 +11,7 @@ namespace Membership.Services
         //public (IList<ApplicationUser> records, int total, int totalDisplay) GetAll(int pageIndex, int pageSize, string searchText, string sortText);
         //public (IList<ApplicationUser> records, int total, int totalDisplay) GetAllAdmin(int pageIndex, int pageSize, string searchText, string sortText);
         //public (IList<ApplicationUser> records, int total, int totalDisplay) GetAllUser(int pageIndex, int pageSize, string searchText, string sortText);
-        //public ApplicationUser GetById(string id);
+        public ApplicationUser GetById(string id);
         //public Task<string> Add(ApplicationUser user, string userRoleId, string password);
         ////public Task<string> Add(ApplicationUser user, string userRoleName, string password);
         //public Task<string> Update(ApplicationUser user, string userRoleId);

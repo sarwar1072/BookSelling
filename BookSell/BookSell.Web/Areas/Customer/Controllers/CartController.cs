@@ -2,6 +2,7 @@
 using Framework;
 using Framework.Entities;
 using Framework.UnitOfWorkPro;
+using Membership.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,27 +20,32 @@ namespace BookSell.Web.Areas.Customer.Controllers
         ISellUnitOfWork _sellUnitOfWork;
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
-       // private readonly UserManager<IdentityUser> _userManager;
-
-        public CartController(ISellUnitOfWork sellUnitOfWork)
+        // private readonly UserManager<IdentityUser> _userManager;
+        private IUserService _userService;
+        private readonly UserManager _userManager;
+        public CartController(ISellUnitOfWork sellUnitOfWork,
+                               UserManager userManager,
+                               IUserService userService)
         {
             _sellUnitOfWork = sellUnitOfWork;
-            
+            _userManager = userManager;
+            _userService = userService;
+
         }
-        
-        public IActionResult Index( )
+
+        public IActionResult Index()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-           
-           var  ShoppingCartVM = new ShoppingCartVM()
+
+            var ShoppingCartVM = new ShoppingCartVM()
             {
                 OrderHeader = new OrderHeader(),
-               ListCart = _sellUnitOfWork.ShoppingCartRepository.GetAll(u => u.ApplicationUserId == claim.Value,
-                 includeProperties:"Product")
-           };
+                ListCart = _sellUnitOfWork.ShoppingCartRepository.GetAll(u => u.ApplicationUserId == claim.Value,
+                  includeProperties: "Product")
+            };
             ShoppingCartVM.OrderHeader.OrderTotal = 0;
-           
+
             foreach (var list in ShoppingCartVM.ListCart)
             {
                 list.Price = SD.GetPriceBasedOnQuantity(list.Count, list.Product.Price,
@@ -96,6 +102,21 @@ namespace BookSell.Web.Areas.Customer.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Summary()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            ShoppingCartVM = new ShoppingCartVM()
+            {
+                OrderHeader = new OrderHeader(),
+                ListCart = _sellUnitOfWork.ShoppingCartRepository.GetAll(c => c.ApplicationUserId == claim.Value,
+                includeProperties: "Product")
+            };
+            ShoppingCartVM.OrderHeader.AUser = _userService.GetById(claim.Value);
 
-    }
-}
+
+            return View();
+        }
+   }
+ }
+
