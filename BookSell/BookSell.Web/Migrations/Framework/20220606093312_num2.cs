@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookSell.Web.Migrations.Framework
 {
-    public partial class num2Fram : Migration
+    public partial class num2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

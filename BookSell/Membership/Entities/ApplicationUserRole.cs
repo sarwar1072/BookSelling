@@ -8,7 +8,8 @@ namespace Membership.Entities
     public class ApplicationUserRole
       : IdentityUserRole<string>
     {
-        public ApplicationUser User { get; set; }
-        public Role Role { get; set; }
+      //  public ApplicationUser User { get; set; }
+       // public Role Role { get; set; }
     }
 }
+   

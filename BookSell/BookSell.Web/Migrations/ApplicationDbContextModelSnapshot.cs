@@ -277,14 +277,14 @@ namespace BookSell.Web.Migrations
 
             modelBuilder.Entity("Membership.Entities.ApplicationUserRole", b =>
                 {
-                    b.HasOne("Membership.Entities.Role", "Role")
-                        .WithMany("UserRoles")
+                    b.HasOne("Membership.Entities.Role", null)
+                        .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Membership.Entities.ApplicationUser", "User")
-                        .WithMany("UserRoles")
+                    b.HasOne("Membership.Entities.ApplicationUser", null)
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

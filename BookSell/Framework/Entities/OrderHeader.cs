@@ -13,7 +13,9 @@ namespace Framework.Entities
         public int Id { get; set; }
         public string ApplicationUserId { get; set; }
         //[ForeignKey("ApplicationUserId")]
-        //public ApplicationUser ApplicationUser { get; set; }
+        [NotMapped]
+
+        public ApplicationUser AUser { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime ShippingDate { get; set; }
         public Double OrderTotal { get; set; }
