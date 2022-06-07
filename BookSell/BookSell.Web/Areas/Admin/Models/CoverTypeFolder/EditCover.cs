@@ -32,5 +32,6 @@ namespace BookSell.Web.Areas.Admin.Models.CoverTypeFolder
                 Name = cover.Name;
             }
         }
+
     }
 }

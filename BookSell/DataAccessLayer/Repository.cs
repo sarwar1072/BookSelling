@@ -42,6 +42,10 @@ namespace DataAccessLayer
             }
             _dbSet.Remove(entityToDelete);
         }
+        public virtual void Remove(IEnumerable<TEntity> entity)
+        {
+            _dbSet.RemoveRange(entity);
+        }
 
         public virtual void Remove(Expression<Func<TEntity, bool>> filter)
         {

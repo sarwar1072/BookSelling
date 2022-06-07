@@ -13,6 +13,7 @@ namespace DataAccessLayer
     {
         void Add(TEntity entity);
         void Remove(TKey id);
+        void Remove(IEnumerable<TEntity> entity);
         void Remove(TEntity entityToDelete);
         void Remove(Expression<Func<TEntity, bool>> filter);
         void Edit(TEntity entityToUpdate);
