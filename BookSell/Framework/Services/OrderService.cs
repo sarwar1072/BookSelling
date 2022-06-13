@@ -7,22 +7,23 @@ using System.Text;
 
 namespace Framework.Services
 {
-  public  class OrderService
+  public  class OrderService: IOrderService
     {
         private ISellUnitOfWork _sellUnitOfWork;
         public OrderService(ISellUnitOfWork sellUnitOfWork)
         {
             _sellUnitOfWork = sellUnitOfWork;
-
         }
-
+        public void Dispose()
+        {
+            _sellUnitOfWork.Dispose();
+        }
         public (IList<OrderDetails> orderDetails, int total, int totalDisplay) GetDetails(int pageindex, int Pagesize,
                                                                                    string searchText, string orderBy)
         {
             var result = _sellUnitOfWork.OrderDetailsRepository.GetDynamic(null, orderBy,"Product", i => i.Include(s => s.OrderHeader).ThenInclude(s => s.AUser), 
-                pageindex, Pagesize, true);
+                                                                                                                                      pageindex, Pagesize, true);
             return (result.data, result.total, result.totalDisplay);
         }
-
     }
 }

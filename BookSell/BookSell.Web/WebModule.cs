@@ -3,6 +3,7 @@ using BookSell.Web.Areas.Admin.Models;
 using BookSell.Web.Areas.Admin.Models.CategoryFolder;
 using BookSell.Web.Areas.Admin.Models.CompanyFolder;
 using BookSell.Web.Areas.Admin.Models.CoverTypeFolder;
+using BookSell.Web.Areas.Admin.Models.OrderDetailsModel;
 using BookSell.Web.Areas.Admin.Models.ProductFolder;
 using BookSell.Web.Areas.Customer.Models;
 using BookSell.Web.Models;
@@ -39,8 +40,9 @@ namespace BookSell.Web
             builder.RegisterType<FileHelper>().As<IFileHelper>().InstancePerLifetimeScope();
             builder.RegisterType<CompanyModel>().AsSelf();
             builder.RegisterType<Product>().AsSelf();
-
-              builder.RegisterType<ShoppingCartVM>().AsSelf();
+            builder.RegisterType<OrderDetailModel>().AsSelf();
+             
+            builder.RegisterType<ShoppingCartVM>().AsSelf();
 
             //builder.RegisterType<AuthenticationService>().As<IAuthenticationService>()
             //         .InstancePerLifetimeScope();
@@ -49,8 +51,7 @@ namespace BookSell.Web
             //builder.RegisterType<FileHelper>().As<IFileHelper>()
             //    .InstancePerLifetimeScope();
 
-            //builder.RegisterType<ICartService>().As
-            //  .InstancePerLifetimeScope();
+           
 
             base.Load(builder);
         }

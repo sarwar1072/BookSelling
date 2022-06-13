@@ -64,8 +64,10 @@ namespace Framework
                 .InstancePerLifetimeScope();
             builder.RegisterType<UserService>().As<IUserService>()
                 .InstancePerLifetimeScope();
+            builder.RegisterType<OrderService>().As<IOrderService>()
+               .InstancePerLifetimeScope();
 
-            // builder.RegisterType<RazorPayConfig>().AsSelf();
+            // builder.RegisterType<RazorPayConfig>().AsSelf();OrderService
 
 
             base.Load(builder);
