@@ -17,19 +17,20 @@ namespace BookSell.Web.Areas.Admin.Models.OrderDetailsModel
                                                      dataTables.PageIndex,
                                                      dataTables.PageSize,
                                                      dataTables.SearchText,
-                                                     dataTables.GetSortText(new string[] { "OrderHeader","Count" }));
+                                                     dataTables.GetSortText(new string[] { "Name"}));
             return new
             {
                 recordsTotal = data.total,
                 recordsFiltered = data.totalDisplay,
-                data = (from record in data.orderDetails
+                data = (from record in data.orderHeaders
                         select new string[]
                         {
                                 record.Id.ToString(),
-                                record.OrderHeader.Name,
-                                record.OrderHeader.PhoneNumber,
-                                record.OrderHeader.OrderStatus,
-                                record.Price.ToString(),
+                                record.Name,
+                                record.PhoneNumber,
+                                //record.AUser.Email,
+                                record.OrderStatus,
+                                record.OrderTotal.ToString(),
                                 record.Id.ToString()
                         }).ToArray()
             };

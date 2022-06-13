@@ -18,10 +18,10 @@ namespace Framework.Services
         {
             _sellUnitOfWork.Dispose();
         }
-        public (IList<OrderDetails> orderDetails, int total, int totalDisplay) GetDetails(int pageindex, int Pagesize,
+        public (IList<OrderHeader> orderHeaders, int total, int totalDisplay) GetDetails(int pageindex, int Pagesize,
                                                                                    string searchText, string orderBy)
         {
-            var result = _sellUnitOfWork.OrderDetailsRepository.GetDynamic(null, orderBy, "OrderHeader", pageindex, Pagesize, true);
+            var result = _sellUnitOfWork.OrderHeaderRepository.GetDynamic(null, orderBy, "", pageindex, Pagesize, true);
             return (result.data, result.total, result.totalDisplay);
         }
     }

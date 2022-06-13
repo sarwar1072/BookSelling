@@ -28,6 +28,16 @@ namespace BookSell.Web.Areas.Customer.Controllers
         public IActionResult Index()
         {
             var product = _productService.GetForConsumer();
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim != null)
+            {
+                var count = _sellUnitOfWork.ShoppingCartRepository
+                    .GetAll(c => c.ApplicationUserId == claim.Value)
+                    .ToList().Count();
+
+                HttpContext.Session.SetInt32(SD.ssShoppingCart, count);
+            }
             return View(product);
         }
 

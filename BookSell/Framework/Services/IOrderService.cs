@@ -7,7 +7,7 @@ namespace Framework.Services
 {
     public interface IOrderService:IDisposable
     {
-        (IList<OrderDetails> orderDetails, int total, int totalDisplay) GetDetails(int pageindex, int Pagesize,
+        (IList<OrderHeader> orderHeaders, int total, int totalDisplay) GetDetails(int pageindex, int Pagesize,
                                                                                    string searchText, string orderBy);
     }
 }
