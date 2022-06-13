@@ -324,7 +324,7 @@ namespace DataAccessLayer
         public virtual (IList<TEntity> data, int total, int totalDisplay) GetDynamic(
             Expression<Func<TEntity, bool>> filter = null,
             string orderBy = null,
-             string includeProperties = "",
+             //string includeProperties = "",
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, int pageIndex = 1, int pageSize = 10, bool isTrackingOff = false)
         {
             IQueryable<TEntity> query = _dbSet;
@@ -336,18 +336,15 @@ namespace DataAccessLayer
                 query = query.Where(filter);
                 totalDisplay = query.Count();
             }
-
-            foreach (var includeProperty in includeProperties.Split
-               (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query.Include(includeProperty);
-            }
-
+            //foreach (var includeProperty in includeProperties.Split
+            //   (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            //{
+            //    query = query.Include(includeProperty);
+            //}
             if (include != null)
             {
                 query = include(query);
             }
-
             if (orderBy != null)
             {
                 var result = query.OrderBy(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize);

@@ -1,35 +1,8 @@
 ﻿@model OrderDetailModel
-@{ Layout = "~/Views/Shared/_Layout.cshtml";
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
 
-    //var status = Context.Request.Query["status"];
-
-    //var pending = "text-primary";
-    //var all = "text-primary";
-    //var inprocess = "text-primary";
-    //var completed = "text-primary";
-    //var rejected = "text-primary";
-
-    //switch (status)
-    //{
-    //    case "pending":
-    //        pending = "active text-white";
-    //        break;
-    //    case "inprocess":
-    //        inprocess = "active text-white";
-    //        break;
-    //    case "completed":
-    //        completed = "active text-white";
-    //        break;
-    //    case "rejected":
-    //        rejected = "active text-white";
-    //        break;
-    //    default:
-    //        all = "active text-white";
-    //        break;
-    //}
-
-    }
-
+}
 
 <div class="row">
     <div class="col-6">
@@ -47,13 +20,12 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="Product" class="table table table-striped table-bordered">
+                <table id="orderId" class="table table table-striped table-bordered">
                     <thead class="thead-dark">
                         <tr class="table-info">
                             <th>Id</th>
                             <th>Name</th>
                             <th>Phone Number</th>
-                            <th>Email</th>
                             <th>Order Status</th>
                             <th>Amount</th>   
                             <th>Action</th>
@@ -65,7 +37,6 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Phone Number</th>
-                            <th>Email</th>
                             <th>Order Status</th>
                             <th>Amount</th>
                             <th>Action</th>
@@ -86,33 +57,12 @@
 @section Scripts{
     <script>
         $(function () {
-            $('#Product').DataTable({
+            $("#orderId").DataTable({
                 "processing": true,
                 "serverSide": true,
-                "ajax": "/Admin/Order/GetOrder",
-
-                "columnDefs": [
-                   
-                    {
-                        "orderable": false,
-                        "targets": 7,
-                        "width": "20%",
-                        "render": function (data, type, row) {
-                            return `<button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/admin/Product/EditProduct/${data}'" value='${data}'>
-                                                        <i class="fas fa-pencil-alt">
-                                                        </i>
-                                                        Edit
-                                                    </button>
-                                                    <button type="submit" class="btn btn-danger btn-sm show-bs-modal" href="#" data-id='${data}' value='${data}'>
-                                                        <i class="fas fa-trash">
-                                                        </i>
-                                                        Delete
-                                                    </button>`;
-                        }
-                    }
-                ]
+                "ajax": "/Admin/Order/GetOrder"
             });
-
-          </script>
+        });
+    </script>
 
 }

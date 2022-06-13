@@ -9,22 +9,15 @@ namespace BookSell.Web.Areas.Admin.Models.OrderDetailsModel
 {
     public class OrderDetailModel:OrderDetailsBaseModel
     {
-        public OrderDetailModel():base()
-        {
-
-        }
-        public OrderDetailModel(IOrderService orderService):base()
-        {
-
-        }
-
+        public OrderDetailModel() : base() { }      
+        public OrderDetailModel(IOrderService orderService) : base() { }       
         internal object GetOrder(DataTablesAjaxRequestModel dataTables)
         {
             var data = _ordrService.GetDetails(
                                                      dataTables.PageIndex,
                                                      dataTables.PageSize,
                                                      dataTables.SearchText,
-                                                     dataTables.GetSortText(new string[] { "Name","PhoneNumber","Email","Amount" }));
+                                                     dataTables.GetSortText(new string[] { "OrderHeader","Count" }));
             return new
             {
                 recordsTotal = data.total,
@@ -33,14 +26,12 @@ namespace BookSell.Web.Areas.Admin.Models.OrderDetailsModel
                         select new string[]
                         {
                                 record.Id.ToString(),
-                                record.OrderHeader.AUser.FullName,
-                                record.OrderHeader.AUser.PhoneNumber,
-                                record.OrderHeader.AUser.Email,
+                                record.OrderHeader.Name,
+                                record.OrderHeader.PhoneNumber,
                                 record.OrderHeader.OrderStatus,
-                                record.Count.ToString(),
+                                record.Price.ToString(),
                                 record.Id.ToString()
-                        }
-                       ).ToArray()
+                        }).ToArray()
             };
         }
 
