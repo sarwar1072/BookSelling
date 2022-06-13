@@ -49,6 +49,7 @@ namespace DataAccessLayer
         (IList<TEntity> data, int total, int totalDisplay) GetDynamic(
            Expression<Func<TEntity, bool>> filter = null,
            string orderBy = null,
+            string includeProperties = "",
            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, int pageIndex = 1, int pageSize = 10, bool isTrackingOff = false);
 
         IList<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
