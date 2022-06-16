@@ -36,74 +36,75 @@ namespace BookSell.Web.Areas.Admin.Models
         public AdminBaseModel(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-          //  SetupMenu();
+           SetupMenu();
         }
         public AdminBaseModel()
         {
             _httpContextAccessor = Startup.AutofacContainer.Resolve<IHttpContextAccessor>();
-           // SetupMenu();
+           SetupMenu();
         }
 
-        //private void SetupMenu()
-        //{
-        //    MenuModel = new MenuModel
-        //    {
-        //        MenuItems = new List<MenuItem> 
-        //        {
-        //            new MenuItem
-        //            {
-        //                Title = "Register Admin",
-        //                Childs = new List<MenuChildItem>
-        //                {
-        //                    new MenuChildItem{ Title = "Create Admin", Url = "/Identities/Register/Registration" }
-        //                }
-        //            },
-        //           new MenuItem
-        //           {
-        //               Title="Course",
-        //               Childs=new List<MenuChildItem>
-        //               {
-        //                   new MenuChildItem{Title="View Course",Url="/Admin/Course/"},
-        //                   new MenuChildItem{Title="Add Course",Url="/Admin/Course/CreateCourse"}
-        //               }
+        private void SetupMenu()
+        {
+            MenuModel = new MenuModel
+            {
+                MenuItems = new List<MenuItem>
+                {
+                    new MenuItem
+                    {
+                        Title = "Category",
+                        Childs = new List<MenuChildItem>
+                        {
+                            new MenuChildItem{ Title = "View Category", Url = "/Admin/Category/" },
+                            new MenuChildItem{Title="Add category",Url="/Admin/Category/AddCategory/"}
+                        }
+                    },
+                   new MenuItem
+                   {
+                       Title="Course",
+                       Childs=new List<MenuChildItem>
+                       {
+                           new MenuChildItem{Title="View Company",Url="/Admin/Company/"},
+                           new MenuChildItem{Title="Add Company",Url="/Admin/Company/AddCompany/"}
+                       }
 
-        //           },
+                   },
 
-        //           new MenuItem
-        //           {
-        //               Title="Student",
-        //               Childs=new List<MenuChildItem>
-        //               {
-        //                   new MenuChildItem{Title="View Student",Url="/Admin/Student/"},
-        //                   new MenuChildItem{Title="Add Student",Url="/Admin/Student/CreateStudent/"}
-        //               }
-        //           },
+                   new MenuItem
+                   {
+                       Title="Student",
+                       Childs=new List<MenuChildItem>
+                       {
+                           new MenuChildItem{Title="View CoverType",Url="/Admin/CoverType/"},
+                           new MenuChildItem{Title="Add CoverType",Url="/Admin/CoverType/AddCoverType/"}
+                       }
+                   },
 
-        //           new MenuItem
-        //           {
-        //               Title="StudentRegistration",
-        //               Childs=new List<MenuChildItem>
-        //               {
-        //                   new MenuChildItem{Title="View Register Student",Url="/Admin/StudentRegistration/"},
-        //                   new MenuChildItem{Title="Add Student",Url="/Admin/StudentRegistration/CreateRegistration/"}
-        //               }
-        //           },
+                   new MenuItem
+                   {
+                       Title="StudentRegistration",
+                       Childs=new List<MenuChildItem>
+                       {
+                           new MenuChildItem{Title="View  Order",Url="/Admin/Order/"},
+                           //new MenuChildItem{Title="Add ",Url="/Admin/StudentRegistration/CreateRegistration/"}
+                       }
+                   },
 
-        //           new MenuItem
-        //            {
-        //                Title = "Setting",
-        //                Childs = new List<MenuChildItem>
-        //                {
-        //                    new MenuChildItem{ Title = "Manage Profile", Url = "/Identity/Account/Manage/Index" },
-        //                    new MenuChildItem{ Title = "Log Out", Url ="/Identity/Account/Logout"}
+                   new MenuItem
+                    {
+                        Title = "Product",
+                        Childs = new List<MenuChildItem>
+                        {
+                            new MenuChildItem{ Title = " View Product", Url = "/Admin/Product/" },
+                            new MenuChildItem{ Title = "Add Product", Url ="/Admin/Product/AddProduct/"}
 
-        //                }
+                        }
 
-        //            }
+                    }
 
-        //        }           
-        //    };
-        //}
+                }
+            };
+        }
 
     }
 }

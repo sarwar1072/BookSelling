@@ -1,7 +1,9 @@
 ﻿@model OrderDetailModel
-@{ 
-    Layout = "~/Views/Shared/_Layout.cshtml";
 
+@section PageStyles
+{
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 }
 
 <div class="row">
@@ -26,9 +28,9 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Phone Number</th>
-                          
+
                             <th>Order Status</th>
-                            <th>Amount</th>   
+                            <th>Amount</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -38,7 +40,7 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Phone Number</th>
-                            
+
                             <th>Order Status</th>
                             <th>Amount</th>
                             <th>Action</th>
@@ -53,10 +55,14 @@
     <!-- /.col -->
 </div>
 <!-- /.row -->
-
-
 <!-- /.modal -->
-@section Scripts{
+@section PageScripts{
+
+    <!-- DataTables -->
+    <script src="/admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <!-- page script -->
+
     <script>
         $(function () {
             $("#orderId").DataTable({
