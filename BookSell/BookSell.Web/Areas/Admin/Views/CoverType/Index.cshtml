@@ -1,13 +1,10 @@
 ﻿@model CoverTypeModel
 
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 @{ ViewData["Title"] = "Accounts Type"; }
 
-@section PageStyles
-{
-    <!-- DataTables -->
-    <link rel="stylesheet" href="/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-}
+
 
 <div class="row">
     <div class="col-6">
@@ -76,12 +73,7 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-@section PageScripts{
-
-    <!-- DataTables -->
-    <script src="/admin/plugins/datatables/jquery.dataTables.js"></script>
-    <script src="/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-    <!-- page script -->
+@section Scripts{
 
 
     <script>
@@ -100,15 +92,15 @@
                         "width": "20%",
                         "render": function (data, type, row) {
                             return `<button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/admin/CoverType/EditCover/${data}'" value='${data}'>
-                                                        <i class="fas fa-pencil-alt">
-                                                        </i>
-                                                        Edit
-                                                    </button>
-                                                    <button type="submit" class="btn btn-danger btn-sm show-bs-modal" href="#" data-id='${data}' value='${data}'>
-                                                        <i class="fas fa-trash">
-                                                        </i>
-                                                        Delete
-                                                    </button>`;
+                                                            <i class="fas fa-pencil-alt">
+                                                            </i>
+                                                            Edit
+                                                        </button>
+                                                        <button type="submit" class="btn btn-danger btn-sm show-bs-modal" href="#" data-id='${data}' value='${data}'>
+                                                            <i class="fas fa-trash">
+                                                            </i>
+                                                            Delete
+                                                        </button>`;
                         }
                     }
                 ]

@@ -1,10 +1,7 @@
 ﻿@model OrderDetailModel
 
-@section PageStyles
-{
-    <!-- DataTables -->
-    <link rel="stylesheet" href="/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-}
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
 
 <div class="row">
     <div class="col-6">
@@ -56,12 +53,8 @@
 </div>
 <!-- /.row -->
 <!-- /.modal -->
-@section PageScripts{
+@section Scripts{
 
-    <!-- DataTables -->
-    <script src="/admin/plugins/datatables/jquery.dataTables.js"></script>
-    <script src="/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-    <!-- page script -->
 
     <script>
         $(function () {
