@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace BookSell.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = IdenSD.Role_Admin)]
+   [Authorize(Roles = IdenSD.Role_Admin)]
 
     public class CoverTypeController : Controller
     {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookSell.Web.Areas.Admin.Models.OrderDetailsModel
 {
-    public class OrderDetailsBaseModel:IDisposable
+    public class OrderDetailsBaseModel:AdminBaseModel,IDisposable
     {
         protected IOrderService _ordrService;
         public OrderDetailsBaseModel(IOrderService ordrService)

@@ -2,8 +2,10 @@
 @{
     ViewData["Title"] = "Index";
 }
-@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
-
+@section PageStyle
+{
+    <link rel="stylesheet" href="/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
 
 <h1>Index</h1>
 
@@ -85,8 +87,10 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-@section Scripts{
-
+@section PageScript
+{
+    <script src="/Admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
     <script>
         $(function () {
@@ -109,15 +113,15 @@
                         "width": "20%",
                         "render": function (data, type, row) {
                             return `<button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/admin/Product/EditProduct/${data}'" value='${data}'>
-                                                                    <i class="fas fa-pencil-alt">
-                                                                    </i>
-                                                                    Edit
-                                                                </button>
-                                                                <button type="submit" class="btn btn-danger btn-sm show-bs-modal" href="#" data-id='${data}' value='${data}'>
-                                                                    <i class="fas fa-trash">
-                                                                    </i>
-                                                                    Delete
-                                                                </button>`;
+                                                                            <i class="fas fa-pencil-alt">
+                                                                            </i>
+                                                                            Edit
+                                                                        </button>
+                                                                        <button type="submit" class="btn btn-danger btn-sm show-bs-modal" href="#" data-id='${data}' value='${data}'>
+                                                                            <i class="fas fa-trash">
+                                                                            </i>
+                                                                            Delete
+                                                                        </button>`;
                         }
                     }
                 ]

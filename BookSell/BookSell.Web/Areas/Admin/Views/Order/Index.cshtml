@@ -1,16 +1,10 @@
 ﻿@model OrderDetailModel
 
-@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@section PageStyle
+{
+    <link rel="stylesheet" href="/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
 
-
-<div class="row">
-    <div class="col-6">
-        <h2 class="text-primary">Product  List </h2>
-    </div>
-    <div class="col-6 text-right">
-        <a class="btn btn-primary" asp-action="AddProduct"><i class="fas fa-plus"></i> &nbsp; Create New Product</a>
-    </div>
-</div>
 
 <div class="row">
     <div class="col-12">
@@ -53,8 +47,10 @@
 </div>
 <!-- /.row -->
 <!-- /.modal -->
-@section Scripts{
-
+@section PageScript
+{
+    <script src="/Admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
     <script>
         $(function () {

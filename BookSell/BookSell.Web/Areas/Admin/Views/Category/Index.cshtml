@@ -1,18 +1,12 @@
 ﻿@model CategoryModel
 
-@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
-
+@section PageStyle
+{
+    <link rel="stylesheet" href="/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
 
 @{ ViewData["Title"] = "Category Type"; }
 
-<div class="row">
-    <div class="col-6">
-        <h2 class="text-primary">Category Type List </h2>
-    </div>
-    <div class="col-6 text-right">
-        <a class="btn btn-primary" asp-action="AddCategory"><i class="fas fa-plus"></i> &nbsp; Create New Category</a>
-    </div>
-</div>
 
 <div class="row">
     <div class="col-12">
@@ -73,8 +67,10 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-@section Scripts{
-
+@section PageScript
+{
+    <script src="/Admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
     <script>
         $(function () {
@@ -92,15 +88,15 @@
                         "width": "20%",
                         "render": function (data, type, row) {
                             return `<button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/admin/Category/EditCategory/${data}'" value='${data}'>
-                                                            <i class="fas fa-pencil-alt">
-                                                            </i>
-                                                            Edit
-                                                        </button>
-                                                        <button type="submit" class="btn btn-danger btn-sm show-bs-modal" href="#" data-id='${data}' value='${data}'>
-                                                            <i class="fas fa-trash">
-                                                            </i>
-                                                            Delete
-                                                        </button>`;
+                                                                    <i class="fas fa-pencil-alt">
+                                                                    </i>
+                                                                    Edit
+                                                                </button>
+                                                                <button type="submit" class="btn btn-danger btn-sm show-bs-modal" href="#" data-id='${data}' value='${data}'>
+                                                                    <i class="fas fa-trash">
+                                                                    </i>
+                                                                    Delete
+                                                                </button>`;
                         }
                     }
                 ]

@@ -1,7 +1,9 @@
 ﻿@model CompanyModel
 
-@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
-
+@section PageStyle
+{
+    <link rel="stylesheet" href="/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
 @{ ViewData["Title"] = "Company"; }
 
 <div class="row">
@@ -82,14 +84,17 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-@section Scripts{
+@section PageScript
+{
+    <script src="/Admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
     <script>
-    $(function () {
-        $('#company').DataTable({
+        $(function () {
+            $('#company').DataTable({
                 "processing": true,
                 "serverSide": true,
                 "ajax": "/Admin/Company/GetComapny",
-               
+
                 "columnDefs": [
                     {
                         "orderable": false,
@@ -97,21 +102,21 @@
                         "width": "20%",
                         "render": function (data, type, row) {
                             return `<button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/admin/Company/EditCompany/${data}'" value='${data}'>
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </button>
-                                            <button type="submit" class="btn btn-danger btn-sm show-bs-modal" href="#" data-id='${data}' value='${data}'>
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </button>`;
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Edit
+                                                    </button>
+                                                    <button type="submit" class="btn btn-danger btn-sm show-bs-modal" href="#" data-id='${data}' value='${data}'>
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                        Delete
+                                                    </button>`;
                         }
                     }
                 ]
             });
 
-        $('#company').on('click', '.show-bs-modal', function (event) {
+            $('#company').on('click', '.show-bs-modal', function (event) {
                 var id = $(this).data("id");
                 var modal = $("#modal-default");
                 modal.find('.modal-body p').text('Are you sure you want to delete this record?')

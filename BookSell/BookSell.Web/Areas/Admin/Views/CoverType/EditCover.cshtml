@@ -28,10 +28,9 @@
     </div>
 </div>
 
-@section Scripts{
-    <partial name="_ValidationScriptsPartial" />
+@section PageScript
+{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
-
 
 
