@@ -59,18 +59,8 @@ namespace BookSell.Web.Areas.Admin.Models
                             new MenuChildItem{Title="Add category",Url="/Admin/Category/AddCategory/"}
                         }
                     },
-                   new MenuItem
-                   {
-                       Title="Company",
-                       Childs=new List<MenuChildItem>
-                       {
-                           new MenuChildItem{Title="View Company",Url="/Admin/Company/"},
-                           new MenuChildItem{Title="Add Company",Url="/Admin/Company/AddCompany/"}
-                       }
 
-                   },
-
-                   new MenuItem
+                     new MenuItem
                    {
                        Title="Cover type",
                        Childs=new List<MenuChildItem>
@@ -80,15 +70,6 @@ namespace BookSell.Web.Areas.Admin.Models
                        }
                    },
 
-                   new MenuItem
-                   {
-                       Title="List Order",
-                       Childs=new List<MenuChildItem>
-                       {
-                           new MenuChildItem{Title="View  Order",Url="/Admin/Order/"},
-                           //new MenuChildItem{Title="Add ",Url="/Admin/StudentRegistration/CreateRegistration/"}
-                       }
-                   },
 
                    new MenuItem
                     {
@@ -100,8 +81,28 @@ namespace BookSell.Web.Areas.Admin.Models
 
                         }
 
-                    }
+                    },
+                   new MenuItem
+                   {
+                       Title="List Order",
+                       Childs=new List<MenuChildItem>
+                       {
+                           new MenuChildItem{Title="View  Order",Url="/Admin/Order/"},
+                           //new MenuChildItem{Title="Add ",Url="/Admin/StudentRegistration/CreateRegistration/"}
+                       }
+                   },
+                   new MenuItem
+                   {
+                       Title="Company",
+                       Childs=new List<MenuChildItem>
+                       {
+                           new MenuChildItem{Title="View Company",Url="/Admin/Company/"},
+                           new MenuChildItem{Title="Add Company",Url="/Admin/Company/AddCompany/"}
+                       }
 
+                   }
+
+                                    
                 }
             };
         }

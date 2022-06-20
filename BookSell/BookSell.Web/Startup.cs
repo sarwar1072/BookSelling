@@ -153,10 +153,6 @@ namespace BookSell.Web
                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
 
-                //endpoints.MapControllerRoute(
-                //    name: "default",
-                //    pattern: "{controller=Home}/{action=Index}/{id?}");
-                //endpoints.MapRazorPages();
             });
             //accountSeed.MigrateAsync().Wait();
             //accountSeed.SeedAsync().Wait();
