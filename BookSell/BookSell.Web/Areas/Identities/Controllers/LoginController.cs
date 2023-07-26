@@ -51,7 +51,7 @@ namespace BookSell.Web.Areas.Identities.Controllers
                     {
                         return Redirect(returnUrl);
                     }
-                    ;
+                   //; 
                 }
                 else
                 {

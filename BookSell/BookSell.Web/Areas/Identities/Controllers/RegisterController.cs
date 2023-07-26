@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace BookSell.Web.Areas.Identities.Controllers
 {
+    //mahim@gmail.com pass:mahim@1072
     [Area("Identities")]
     public class RegisterController : Controller
     {

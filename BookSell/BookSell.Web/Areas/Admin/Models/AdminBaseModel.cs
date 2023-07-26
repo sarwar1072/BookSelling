@@ -10,6 +10,7 @@ namespace BookSell.Web.Areas.Admin.Models
 {
     public abstract class AdminBaseModel
     {
+
         public MenuModel MenuModel { get; set; }
         public ResponseModel Response
         {
@@ -31,81 +32,200 @@ namespace BookSell.Web.Areas.Admin.Models
                     value);
             }
         }
-
         protected IHttpContextAccessor _httpContextAccessor;
         public AdminBaseModel(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-           SetupMenu();
+            SetupMenu();
         }
+
         public AdminBaseModel()
         {
             _httpContextAccessor = Startup.AutofacContainer.Resolve<IHttpContextAccessor>();
-           SetupMenu();
+            SetupMenu();
         }
 
         private void SetupMenu()
         {
             MenuModel = new MenuModel
             {
-                MenuItems = new List<MenuItem>
+                MenuItems = new List<MenuItem>()
                 {
-                    new MenuItem
                     {
-                        Title = "Category",
+                        
+
+                        new MenuItem
+                        {
+                            Title = "Category",
                         Childs = new List<MenuChildItem>
                         {
-                            new MenuChildItem{ Title = "View Category", Url = "/Admin/Category/" },
-                            new MenuChildItem{Title="Add category",Url="/Admin/Category/AddCategory/"}
+                            new MenuChildItem{ Title = "View Category", Url = "/Admin/Category" },
+                            new MenuChildItem{Title="Add category",Url="/Admin/Category/AddCategory"}
+                        }
                         }
                     },
 
-                     new MenuItem
-                   {
-                       Title="Cover type",
+                    {
+                        new MenuItem
+                        {
+                             Title="Cover type",
                        Childs=new List<MenuChildItem>
                        {
-                           new MenuChildItem{Title="View CoverType",Url="/Admin/CoverType/"},
-                           new MenuChildItem{Title="Add CoverType",Url="/Admin/CoverType/AddCoverType/"}
+                           new MenuChildItem{Title="View CoverType",Url="/Admin/CoverType"},
+                           new MenuChildItem{Title="Add CoverType",Url="/Admin/CoverType/AddCoverType"}
                        }
-                   },
+                        }
+                    },
 
-
-                   new MenuItem
                     {
-                        Title = "Product",
+                        new MenuItem
+                        {
+                            Title = "Product",
                         Childs = new List<MenuChildItem>
                         {
-                            new MenuChildItem{ Title = " View Product", Url = "/Admin/Product/" },
-                            new MenuChildItem{ Title = "Add Product", Url ="/Admin/Product/AddProduct/"}
+                            new MenuChildItem{ Title = " View Product", Url = "/Admin/Product" },
+                            new MenuChildItem{ Title = "Add Product", Url ="/Admin/Product/AddProduct"}
 
                         }
-
+                        }
                     },
-                   new MenuItem
-                   {
-                       Title="List Order",
+
+                    {
+                        new MenuItem
+                        {
+                            Title="List Order",
                        Childs=new List<MenuChildItem>
                        {
-                           new MenuChildItem{Title="View  Order",Url="/Admin/Order/"},
+                           new MenuChildItem{Title="View  Order",Url="/Admin/Order"},
                            //new MenuChildItem{Title="Add ",Url="/Admin/StudentRegistration/CreateRegistration/"}
                        }
-                   },
-                   new MenuItem
-                   {
-                       Title="Company",
+                        }
+                    },
+
+                     {
+                        new MenuItem
+                        {
+                             Title="Company",
                        Childs=new List<MenuChildItem>
                        {
-                           new MenuChildItem{Title="View Company",Url="/Admin/Company/"},
-                           new MenuChildItem{Title="Add Company",Url="/Admin/Company/AddCompany/"}
+                           new MenuChildItem{Title="View Company",Url="/Admin/Company"},
+                           new MenuChildItem{Title="Add Company",Url="/Admin/Company/AddCompany"}
                        }
+                        }
+                    }
 
-                   }
 
-                                    
                 }
             };
         }
+
+        ////////////////////////////
+        //public MenuModel MenuModel { get; set; }
+        //public ResponseModel Response
+        //{
+        //    get
+        //    {
+        //        if (_httpContextAccessor.HttpContext.Session.IsAvailable
+        //            && _httpContextAccessor.HttpContext.Session.Keys.Contains(nameof(Response)))
+        //        {
+        //            var response = _httpContextAccessor.HttpContext.Session.Get<ResponseModel>(nameof(Response));
+        //            _httpContextAccessor.HttpContext.Session.Remove(nameof(Response));
+        //            return response;
+        //        }
+        //        else
+        //            return null;
+        //    }
+        //    set
+        //    {
+        //        _httpContextAccessor.HttpContext.Session.Set(nameof(Response),
+        //            value);
+        //    }
+        //}
+
+        //protected IHttpContextAccessor _httpContextAccessor;
+        //public AdminBaseModel(IHttpContextAccessor httpContextAccessor)
+        //{
+        //    _httpContextAccessor = httpContextAccessor;
+        //   SetupMenu();
+        //}
+        //public AdminBaseModel()
+        //{
+        //    _httpContextAccessor = Startup.AutofacContainer.Resolve<IHttpContextAccessor>();
+        //   SetupMenu();
+        //}
+
+        //private void SetupMenu()
+        //{
+        //    MenuModel = new MenuModel
+        //    {
+        //        MenuItems = new List<MenuItem>
+        //        {
+        //            {
+        //                new MenuItem
+        //            {
+        //                Title = "Category",
+        //                Childs = new List<MenuChildItem>
+        //                {
+        //                    new MenuChildItem{ Title = "View Category", Url = "/Admin/Category/" },
+        //                    new MenuChildItem{Title="Add category",Url="/Admin/Category/AddCategory/"}
+        //                }
+        //            }
+        //            },
+
+        //            {
+        //                 new MenuItem
+        //           {
+        //               Title="Cover type",
+        //               Childs=new List<MenuChildItem>
+        //               {
+        //                   new MenuChildItem{Title="View CoverType",Url="/Admin/CoverType/"},
+        //                   new MenuChildItem{Title="Add CoverType",Url="/Admin/CoverType/AddCoverType/"}
+        //               }
+        //           }
+        //            },
+
+
+        //            {
+        //                 new MenuItem
+        //            {
+        //                Title = "Product",
+        //                Childs = new List<MenuChildItem>
+        //                {
+        //                    new MenuChildItem{ Title = " View Product", Url = "/Admin/Product/" },
+        //                    new MenuChildItem{ Title = "Add Product", Url ="/Admin/Product/AddProduct/"}
+
+        //                }
+
+        //            }
+        //            },
+        //            {
+        //                new MenuItem
+        //           {
+        //               Title="List Order",
+        //               Childs=new List<MenuChildItem>
+        //               {
+        //                   new MenuChildItem{Title="View  Order",Url="/Admin/Order/"},
+        //                   //new MenuChildItem{Title="Add ",Url="/Admin/StudentRegistration/CreateRegistration/"}
+        //               }
+        //           }
+        //            },
+        //            {
+        //                new MenuItem
+        //           {
+        //               Title="Company",
+        //               Childs=new List<MenuChildItem>
+        //               {
+        //                   new MenuChildItem{Title="View Company",Url="/Admin/Company/"},
+        //                   new MenuChildItem{Title="Add Company",Url="/Admin/Company/AddCompany/"}
+        //               }
+
+        //           }
+        //            }
+
+
+        //        }
+        //    };
+        //}
 
     }
 }
