@@ -1,7 +1,7 @@
 ﻿using BookSell.Web.Areas.Identities.Models;
 using Membership.Contexts;
-using Membership.Data;
 using Membership.Entities;
+using Membership.Seeds;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

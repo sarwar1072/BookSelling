@@ -1,4 +1,4 @@
-﻿using Membership.Data;
+﻿using Membership.Seeds;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

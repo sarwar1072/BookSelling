@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Membership.Data
+namespace Membership.Seeds
 {
-   public static class IdenSD
+    public static class IdenSD
     {
         public const string Role_User_Indi = "Individual Customer";
         public const string Role_User_Comp = "Company Customer";

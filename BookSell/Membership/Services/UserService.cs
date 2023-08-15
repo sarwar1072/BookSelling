@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
-using Membership.Data;
 using Membership.Entities;
 using Microsoft.EntityFrameworkCore;
 

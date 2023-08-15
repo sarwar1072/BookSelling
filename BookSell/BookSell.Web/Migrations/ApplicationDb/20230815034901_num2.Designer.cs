@@ -4,14 +4,16 @@ using Membership.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BookSell.Web.Migrations
+namespace BookSell.Web.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230815034901_num2")]
+    partial class num2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,6 +129,54 @@ namespace BookSell.Web.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "e9b3be8c-99c5-42c7-8f2e-1eb39f6d9125",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8b83eb4f-0665-42cf-8d58-653eee7a7b3b",
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "admin@stackOverflow.com",
+                            EmailConfirmed = true,
+                            FullName = "Admin",
+                            IsActiveRole = true,
+                            IsBlockedRole = false,
+                            IsDeletedRole = false,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "ADMIN@STACKOVERFLOW.COM",
+                            NormalizedUserName = "ADMIN@STACKOVERFLOW.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ6Zoo++mrdHgUqepZkIKIxe1/PjMD7yPKdyGqIGffeUUXajg+pDkwEZyn7sVXHSzQ==",
+                            PhoneNumberConfirmed = false,
+                            RoleStatus = 0,
+                            SecurityStamp = "86646e1a-5c7e-4f87-92f4-4c0472701193",
+                            Status = false,
+                            TwoFactorEnabled = false,
+                            UserName = "admin@stackOverflow.com"
+                        },
+                        new
+                        {
+                            Id = "8f3d96ce-76ec-4992-911a-33ceB81fa29d",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8caeb092-43ea-4cc5-8afb-11e54ba0dd42",
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "user@stackOverflow.com",
+                            EmailConfirmed = true,
+                            FullName = "sarwar",
+                            IsActiveRole = true,
+                            IsBlockedRole = false,
+                            IsDeletedRole = false,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "USER@STACKOVERFLOW.COM",
+                            NormalizedUserName = "USER@STACKOVERFLOW.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP3sfCn5RlhIbKadUM27Y3evNUWAb3+MZhrBtStqwhycLJ+w3UhA6t3Twos0gfk0HA==",
+                            PhoneNumberConfirmed = false,
+                            RoleStatus = 0,
+                            SecurityStamp = "931f1ad2-281f-498e-9a96-0b0890bc030c",
+                            Status = false,
+                            TwoFactorEnabled = false,
+                            UserName = "user@stackOverflow.com"
+                        });
                 });
 
             modelBuilder.Entity("Membership.Entities.ApplicationUserRole", b =>
@@ -142,6 +192,18 @@ namespace BookSell.Web.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "e9b3be8c-99c5-42c7-8f2e-1eb39f6d9125",
+                            RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210"
+                        },
+                        new
+                        {
+                            UserId = "8f3d96ce-76ec-4992-911a-33ceB81fa29d",
+                            RoleId = "e943ffBf-65a4-4d42-bb74-f2ca9ea8d22a"
+                        });
                 });
 
             modelBuilder.Entity("Membership.Entities.Role", b =>
@@ -184,6 +246,30 @@ namespace BookSell.Web.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                            ConcurrencyStamp = "638276897408763300",
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActiveRole = true,
+                            IsDeletedRole = false,
+                            Name = "Admin",
+                            NormalizedName = "ADMIN",
+                            RoleStatus = 0
+                        },
+                        new
+                        {
+                            Id = "e943ffBf-65a4-4d42-bb74-f2ca9ea8d22a",
+                            ConcurrencyStamp = "638276897408768320",
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActiveRole = true,
+                            IsDeletedRole = false,
+                            Name = "User",
+                            NormalizedName = "USER",
+                            RoleStatus = 0
+                        });
                 });
 
             modelBuilder.Entity("Membership.Entities.RoleClaim", b =>

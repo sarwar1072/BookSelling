@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Membership.Data
+namespace Membership.Seeds
 {
     public class RoleNames
     {

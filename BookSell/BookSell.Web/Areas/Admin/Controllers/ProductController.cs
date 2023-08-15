@@ -3,7 +3,7 @@ using BookSell.Web.Areas.Admin.Models;
 using BookSell.Web.Areas.Admin.Models.ProductFolder;
 using BookSell.Web.Models;
 using Framework;
-using Membership.Data;
+using Membership.Seeds;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
