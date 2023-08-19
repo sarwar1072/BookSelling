@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookSell.Web.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230815034901_num2")]
+    [Migration("20230819160308_num2")]
     partial class num2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,7 +135,7 @@ namespace BookSell.Web.Migrations.ApplicationDb
                         {
                             Id = "e9b3be8c-99c5-42c7-8f2e-1eb39f6d9125",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8b83eb4f-0665-42cf-8d58-653eee7a7b3b",
+                            ConcurrencyStamp = "10068737-daa0-4197-b169-49d5671c556f",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@stackOverflow.com",
                             EmailConfirmed = true,
@@ -146,10 +146,10 @@ namespace BookSell.Web.Migrations.ApplicationDb
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@STACKOVERFLOW.COM",
                             NormalizedUserName = "ADMIN@STACKOVERFLOW.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ6Zoo++mrdHgUqepZkIKIxe1/PjMD7yPKdyGqIGffeUUXajg+pDkwEZyn7sVXHSzQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDvO1sbJFPDdM4mzMBKZAsQDF+/qKOHPL2HdGF7jnoZI9JZR/xEZ5g/Sbruy+MZ30A==",
                             PhoneNumberConfirmed = false,
                             RoleStatus = 0,
-                            SecurityStamp = "86646e1a-5c7e-4f87-92f4-4c0472701193",
+                            SecurityStamp = "dc8ebe6b-61ed-4743-b50c-c0358963e94e",
                             Status = false,
                             TwoFactorEnabled = false,
                             UserName = "admin@stackOverflow.com"
@@ -158,7 +158,7 @@ namespace BookSell.Web.Migrations.ApplicationDb
                         {
                             Id = "8f3d96ce-76ec-4992-911a-33ceB81fa29d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8caeb092-43ea-4cc5-8afb-11e54ba0dd42",
+                            ConcurrencyStamp = "796efd56-fa05-4a2a-b5db-ec52ba18af65",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@stackOverflow.com",
                             EmailConfirmed = true,
@@ -169,10 +169,10 @@ namespace BookSell.Web.Migrations.ApplicationDb
                             LockoutEnabled = true,
                             NormalizedEmail = "USER@STACKOVERFLOW.COM",
                             NormalizedUserName = "USER@STACKOVERFLOW.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP3sfCn5RlhIbKadUM27Y3evNUWAb3+MZhrBtStqwhycLJ+w3UhA6t3Twos0gfk0HA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHITieEHKeecII6PYfrYcqlkJb2tNE/85yDEJI0qArvxxW2okooFGIPa4+Dph1h5ug==",
                             PhoneNumberConfirmed = false,
                             RoleStatus = 0,
-                            SecurityStamp = "931f1ad2-281f-498e-9a96-0b0890bc030c",
+                            SecurityStamp = "0c5df914-6533-47e2-b7c0-e4e8147bd79c",
                             Status = false,
                             TwoFactorEnabled = false,
                             UserName = "user@stackOverflow.com"
@@ -187,9 +187,19 @@ namespace BookSell.Web.Migrations.ApplicationDb
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("RoleId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId1")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("RoleId1");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("AspNetUserRoles");
 
@@ -251,7 +261,7 @@ namespace BookSell.Web.Migrations.ApplicationDb
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "638276897408763300",
+                            ConcurrencyStamp = "638280793880915765",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActiveRole = true,
                             IsDeletedRole = false,
@@ -262,7 +272,7 @@ namespace BookSell.Web.Migrations.ApplicationDb
                         new
                         {
                             Id = "e943ffBf-65a4-4d42-bb74-f2ca9ea8d22a",
-                            ConcurrencyStamp = "638276897408768320",
+                            ConcurrencyStamp = "638280793880920549",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActiveRole = true,
                             IsDeletedRole = false,
@@ -369,11 +379,19 @@ namespace BookSell.Web.Migrations.ApplicationDb
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Membership.Entities.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId1");
+
                     b.HasOne("Membership.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Membership.Entities.ApplicationUser", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Membership.Entities.RoleClaim", b =>

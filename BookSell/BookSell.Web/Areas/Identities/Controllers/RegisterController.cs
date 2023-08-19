@@ -58,7 +58,7 @@ namespace BookSell.Web.Areas.Identities.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, IdenSD.Role_User_Indi);
+                    await _userManager.AddToRoleAsync(user, IdenSD.Role_Admin);
                 }
 
                 if (_userManager.Options.SignIn.RequireConfirmedAccount)

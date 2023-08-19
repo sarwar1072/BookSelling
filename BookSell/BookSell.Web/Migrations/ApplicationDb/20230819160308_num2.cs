@@ -133,7 +133,9 @@ namespace BookSell.Web.Migrations.ApplicationDb
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    RoleId = table.Column<string>(nullable: false)
+                    RoleId = table.Column<string>(nullable: false),
+                    UserId1 = table.Column<string>(nullable: true),
+                    RoleId1 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -145,11 +147,23 @@ namespace BookSell.Web.Migrations.ApplicationDb
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId1",
+                        column: x => x.RoleId1,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -177,8 +191,8 @@ namespace BookSell.Web.Migrations.ApplicationDb
                 columns: new[] { "Id", "ConcurrencyStamp", "CreatedBy", "CreationTime", "IsActiveRole", "IsDeletedRole", "Name", "NormalizedName", "RoleStatus" },
                 values: new object[,]
                 {
-                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "638276897408763300", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, false, "Admin", "ADMIN", 0 },
-                    { "e943ffBf-65a4-4d42-bb74-f2ca9ea8d22a", "638276897408768320", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, false, "User", "USER", 0 }
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "638280793880915765", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, false, "Admin", "ADMIN", 0 },
+                    { "e943ffBf-65a4-4d42-bb74-f2ca9ea8d22a", "638280793880920549", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, false, "User", "USER", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -186,19 +200,19 @@ namespace BookSell.Web.Migrations.ApplicationDb
                 columns: new[] { "Id", "AccessFailedCount", "City", "ConcurrencyStamp", "CreatedBy", "CreationTime", "Email", "EmailConfirmed", "FullName", "Gender", "ImageUrl", "IsActiveRole", "IsBlockedRole", "IsDeletedRole", "LastPassword", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalCode", "RoleStatus", "SecurityStamp", "State", "Status", "StreetAddress", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "e9b3be8c-99c5-42c7-8f2e-1eb39f6d9125", 0, null, "8b83eb4f-0665-42cf-8d58-653eee7a7b3b", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@stackOverflow.com", true, "Admin", null, null, true, false, false, null, true, null, "ADMIN@STACKOVERFLOW.COM", "ADMIN@STACKOVERFLOW.COM", "AQAAAAEAACcQAAAAEJ6Zoo++mrdHgUqepZkIKIxe1/PjMD7yPKdyGqIGffeUUXajg+pDkwEZyn7sVXHSzQ==", null, false, null, 0, "86646e1a-5c7e-4f87-92f4-4c0472701193", null, false, null, false, "admin@stackOverflow.com" },
-                    { "8f3d96ce-76ec-4992-911a-33ceB81fa29d", 0, null, "8caeb092-43ea-4cc5-8afb-11e54ba0dd42", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@stackOverflow.com", true, "sarwar", null, null, true, false, false, null, true, null, "USER@STACKOVERFLOW.COM", "USER@STACKOVERFLOW.COM", "AQAAAAEAACcQAAAAEP3sfCn5RlhIbKadUM27Y3evNUWAb3+MZhrBtStqwhycLJ+w3UhA6t3Twos0gfk0HA==", null, false, null, 0, "931f1ad2-281f-498e-9a96-0b0890bc030c", null, false, null, false, "user@stackOverflow.com" }
+                    { "e9b3be8c-99c5-42c7-8f2e-1eb39f6d9125", 0, null, "10068737-daa0-4197-b169-49d5671c556f", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@stackOverflow.com", true, "Admin", null, null, true, false, false, null, true, null, "ADMIN@STACKOVERFLOW.COM", "ADMIN@STACKOVERFLOW.COM", "AQAAAAEAACcQAAAAEDvO1sbJFPDdM4mzMBKZAsQDF+/qKOHPL2HdGF7jnoZI9JZR/xEZ5g/Sbruy+MZ30A==", null, false, null, 0, "dc8ebe6b-61ed-4743-b50c-c0358963e94e", null, false, null, false, "admin@stackOverflow.com" },
+                    { "8f3d96ce-76ec-4992-911a-33ceB81fa29d", 0, null, "796efd56-fa05-4a2a-b5db-ec52ba18af65", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@stackOverflow.com", true, "sarwar", null, null, true, false, false, null, true, null, "USER@STACKOVERFLOW.COM", "USER@STACKOVERFLOW.COM", "AQAAAAEAACcQAAAAEHITieEHKeecII6PYfrYcqlkJb2tNE/85yDEJI0qArvxxW2okooFGIPa4+Dph1h5ug==", null, false, null, 0, "0c5df914-6533-47e2-b7c0-e4e8147bd79c", null, false, null, false, "user@stackOverflow.com" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
-                columns: new[] { "UserId", "RoleId" },
-                values: new object[] { "e9b3be8c-99c5-42c7-8f2e-1eb39f6d9125", "2c5e174e-3b0e-446f-86af-483d56fd7210" });
+                columns: new[] { "UserId", "RoleId", "RoleId1", "UserId1" },
+                values: new object[] { "e9b3be8c-99c5-42c7-8f2e-1eb39f6d9125", "2c5e174e-3b0e-446f-86af-483d56fd7210", null, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
-                columns: new[] { "UserId", "RoleId" },
-                values: new object[] { "8f3d96ce-76ec-4992-911a-33ceB81fa29d", "e943ffBf-65a4-4d42-bb74-f2ca9ea8d22a" });
+                columns: new[] { "UserId", "RoleId", "RoleId1", "UserId1" },
+                values: new object[] { "8f3d96ce-76ec-4992-911a-33ceB81fa29d", "e943ffBf-65a4-4d42-bb74-f2ca9ea8d22a", null, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -226,6 +240,16 @@ namespace BookSell.Web.Migrations.ApplicationDb
                 name: "IX_AspNetUserRoles_RoleId",
                 table: "AspNetUserRoles",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId1",
+                table: "AspNetUserRoles",
+                column: "RoleId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_UserId1",
+                table: "AspNetUserRoles",
+                column: "UserId1");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",

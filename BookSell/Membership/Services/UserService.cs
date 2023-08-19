@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using Membership.Entities;
+using Membership.Seeds;
 using Microsoft.EntityFrameworkCore;
 
 namespace Membership.Services
@@ -27,7 +28,7 @@ namespace Membership.Services
             _currentUserService = currentUserService;
         }
 
-        //public (IList<ApplicationUser> records,int total,int totalDisplay) GetAll(int pageIndex,int pageSize,string searchText,string sortText)
+        //public (IList<ApplicationUser> records, int total, int totalDisplay) GetAll(int pageIndex, int pageSize, string searchText, string sortText)
         //{
         //    var users = new List<ApplicationUser>();
         //    var columnsMap = new Dictionary<string, Expression<Func<ApplicationUser, object>>>()
@@ -37,7 +38,7 @@ namespace Membership.Services
         //        ["email"] = x => x.Email
         //    };
 
-        //    var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
+        //    var query = _userManager.Users.Include(u => u..UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
         //    var total = query.CountAsync();
 
         //    query = query.Where(x => !x.IsDeletedRole &&

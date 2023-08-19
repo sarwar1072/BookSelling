@@ -25,14 +25,14 @@ namespace Membership.Entities
         public bool IsActiveRole { get; set; }
         public bool IsBlockedRole { get; set; }
         public bool IsDeletedRole { get; set; }
-      // public IList<ApplicationUserRole> UserRoles { get; set; }
+       public IList<ApplicationUserRole> UserRoles { get; set; }
         public ApplicationUser()
                     : base()
         {
             this.IsActiveRole = true;
             this.IsDeletedRole = false;
             this.IsBlockedRole = false;
-           // this.UserRoles = new List<ApplicationUserRole>(); 
+            this.UserRoles = new List<ApplicationUserRole>(); 
         }
 
         internal ApplicationUser(string userName)
@@ -41,7 +41,7 @@ namespace Membership.Entities
             this.IsActiveRole = true;
             this.IsDeletedRole = false;
             this.IsBlockedRole = false;
-          // this.UserRoles = new List<ApplicationUserRole>();
+           this.UserRoles = new List<ApplicationUserRole>();
         }
 
         public ApplicationUser(string userName, string mobileNumber, string email)

@@ -14,13 +14,13 @@ namespace Membership.Entities
         public DateTime CreationTime { get; set;}
         public bool IsActiveRole { get; set; }
         public bool IsDeletedRole { get; set; }
-      //  public IList<ApplicationUserRole> UserRoles { get; set; }
+       public IList<ApplicationUserRole> UserRoles { get; set; }
         public Role()
             : base()
         {
             this.IsActiveRole = true;
             this.IsDeletedRole = false;
-          // this.UserRoles = new List<ApplicationUserRole>();
+           this.UserRoles = new List<ApplicationUserRole>();
         }
 
         public Role(string roleName)
@@ -28,7 +28,7 @@ namespace Membership.Entities
         {
             this.IsActiveRole = true;
             this.IsDeletedRole = false;
-          // this.UserRoles = new List<ApplicationUserRole>();
+           this.UserRoles = new List<ApplicationUserRole>();
         }
 
     }
