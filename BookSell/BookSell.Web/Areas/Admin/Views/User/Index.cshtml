@@ -1,0 +1,72 @@
+﻿@model UserModel
+
+@section PageStyle
+    {
+    <link rel="stylesheet" href="/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="orderId" class="table table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr class="table-info">
+
+                            <th>Full Name</th>
+                            
+                            <th>Phone Number</th>
+                            <th>City</th>
+                            <th> Email</th>
+                            <th>State</th>
+                            <th>Creation Time</th>
+                            <th>ID</th>
+
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr class="table-info">
+                            <th>Full Name</th>
+
+                            <th>Phone Number</th>
+                            <th>City</th>
+                            <th> Email</th>
+                            <th>State</th>
+                            <th>Creation Time</th>
+                            <th>ID</th>
+
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+<!-- /.modal -->
+@section PageScript
+    {
+    <script src="/Admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+    <script>
+        $(function () {
+            $("#orderId").DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": "/Admin/User/GetUser"
+            });
+        });
+    </script>
+
+}

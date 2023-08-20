@@ -101,6 +101,17 @@ namespace BookSell.Web.Areas.Admin.Models
                        }
                         }
                     },
+                    {
+                        new MenuItem
+                        {
+                            Title="List User",
+                       Childs=new List<MenuChildItem>
+                       {
+                           new MenuChildItem{Title="View  User",Url="/Admin/User"},
+                       }
+                        }
+                    }
+                    ,
 
                      {
                         new MenuItem

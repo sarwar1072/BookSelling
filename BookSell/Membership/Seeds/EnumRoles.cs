@@ -8,5 +8,6 @@ namespace Membership.Seeds
     {
         SuperAdmin = 1,
         User = 2,
+        Admin=3,
     }
 }

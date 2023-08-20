@@ -5,8 +5,10 @@ using BookSell.Web.Areas.Admin.Models.CompanyFolder;
 using BookSell.Web.Areas.Admin.Models.CoverTypeFolder;
 using BookSell.Web.Areas.Admin.Models.OrderDetailsModel;
 using BookSell.Web.Areas.Admin.Models.ProductFolder;
+using BookSell.Web.Areas.Admin.Models.UserFolder;
 using BookSell.Web.Models;
 using Framework.Entities;
+using Framework.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -40,7 +42,8 @@ namespace BookSell.Web
             builder.RegisterType<CompanyModel>().AsSelf();
             builder.RegisterType<Product>().AsSelf();
             builder.RegisterType<OrderDetailModel>().AsSelf();
-             
+            builder.RegisterType<UserModel>().AsSelf();
+
             builder.RegisterType<ShoppingCartVM>().AsSelf();
             
             //builder.RegisterType<FileHelper>().As<IFileHelper>()

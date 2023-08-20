@@ -1,4 +1,8 @@
-﻿using Membership.Seeds;
+﻿using Autofac;
+using BookSell.Web.Areas.Admin.Models.CoverTypeFolder;
+using BookSell.Web.Areas.Admin.Models.UserFolder;
+using BookSell.Web.Models;
+using Membership.Seeds;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,7 +19,15 @@ namespace BookSell.Web.Areas.Admin.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var model = Startup.AutofacContainer.Resolve<UserModel>();
+            return View(model);
+        }
+        public IActionResult GetUser()
+        {
+            var tableModel = new DataTablesAjaxRequestModel(Request);
+            var model = Startup.AutofacContainer.Resolve<UserModel>();
+            var data = model.GetUser(tableModel);
+            return Json(data);
         }
     }
 }

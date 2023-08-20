@@ -10,6 +10,7 @@ namespace Framework.Services
    public class UserService: IUserService,IDisposable
     {
         private ApplicationDbContext context;
+      //  private IUserService userService;   
         public UserService(ApplicationDbContext Context)
         {
             context = Context;
@@ -44,12 +45,12 @@ namespace Framework.Services
         //}
 
 
-        //public (IList<ApplicationUser> records, int total, int totalDisplay) GetUser(int pageIndex, int pageSize, 
-        //                                                                         string searchText, string sortText)
-        //{
-        //    var result = context.Users.ToList();
-        //    return (result, 0, 0);
-        //}
+        public (IList<ApplicationUser> records, int total, int totalDisplay) GetUser(int pageIndex, int pageSize,
+                                                                                 string searchText, string sortText)
+        {
+            var result = context.Users.ToList();
+            return (result, 0, 0);
+        }
         public ApplicationUser GetUser(string id)
         {
             return context.Users.Find(id);
