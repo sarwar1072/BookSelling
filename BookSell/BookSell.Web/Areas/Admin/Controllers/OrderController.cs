@@ -24,6 +24,10 @@ namespace BookSell.Web.Areas.Admin.Controllers
 
             return View(model);
         }
+        public IActionResult Details()
+        {
+            return View();
+        }
 
         public IActionResult GetOrder()
         {

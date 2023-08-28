@@ -30,7 +30,8 @@ namespace Membership.Services
         public void Dispose()
         {
             _roleManager.Dispose();
-            _userManager.Dispose(); 
+            _userManager.Dispose();
+            //_currentUserService.Dispose();
         }
         public (IList<ApplicationUser> records, int total, int totalDisplay) GetAll(int pageIndex, int pageSize, string searchText, string sortText)
         {

@@ -57,7 +57,22 @@
             $("#orderId").DataTable({
                 "processing": true,
                 "serverSide": true,
-                "ajax": "/Admin/Order/GetOrder"
+                "ajax": "/Admin/Order/GetOrder",
+
+                "columnDefs": [
+                    {
+                        "orderable": false,
+                        "targets": 5,
+                        "width": "20%",
+                        "render": function (data, type, row) {
+                            return `<div class="text-center">
+                                        <a href="/Admin/Order/Details/${data}" class="btn btn-success text-white" style="cursor:pointer">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </div>`;
+                        }
+                    }
+                ]
             });
         });
     </script>

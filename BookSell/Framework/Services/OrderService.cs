@@ -18,6 +18,11 @@ namespace Framework.Services
         {
             _sellUnitOfWork.Dispose();
         }
+        public OrderDetails GetDetails2(int id)
+        {
+         //   var detailsObj = _sellUnitOfWork.OrderDetailsRepository.Get(x=>x.Id==x.Id,p=>p.Include(p1=>p1.Product).Include(p3=>p3.OrderHeader));
+        return detailsObj;  
+        }
         public (IList<OrderHeader> orderHeaders, int total, int totalDisplay) GetDetails(int pageindex, int Pagesize,
                                                                                    string searchText, string orderBy)
         {
