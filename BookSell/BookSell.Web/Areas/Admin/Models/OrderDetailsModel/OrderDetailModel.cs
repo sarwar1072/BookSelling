@@ -10,27 +10,28 @@ namespace BookSell.Web.Areas.Admin.Models.OrderDetailsModel
     public class OrderDetailModel:OrderDetailsBaseModel
     {
         public OrderDetailModel() : base() { }      
-        public OrderDetailModel(IOrderService orderService) : base() { }       
+        public OrderDetailModel(IOrderService orderService) : base(orderService) { }       
         internal object GetOrder(DataTablesAjaxRequestModel dataTables)
         {
             var data = _ordrService.GetDetails(
                                                      dataTables.PageIndex,
                                                      dataTables.PageSize,
                                                      dataTables.SearchText,
-                                                     dataTables.GetSortText(new string[] { "Name"}));
+                                                     dataTables.GetSortText(new string[] { "Price"}));
             return new
             {
                 recordsTotal = data.total,
                 recordsFiltered = data.totalDisplay,
-                data = (from record in data.orderHeaders
+                data = (from record in data.orderDetails
                         select new string[]
                         {
                                 record.Id.ToString(),
-                                record.Name,
-                                record.PhoneNumber,
-                                //record.AUser.Email,
-                                record.OrderStatus,
-                                record.OrderTotal.ToString(),
+                                record.Price.ToString(),    
+                                record.OrderHeader.Name,
+                                record.OrderHeader.PhoneNumber,
+                                //record.OrderHeader.AUser.Email,
+                                record.OrderHeader.OrderStatus,
+                                record.OrderHeader.OrderTotal.ToString(),
                                 record.Id.ToString()
                         }).ToArray()
             };

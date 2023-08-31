@@ -396,7 +396,22 @@ namespace DataAccessLayer
                     return query.ToList();
             }
         }
+        public virtual IList<TEntity> Get(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>,
+            IIncludableQueryable<TEntity, object>> include = null)
+        {
+            IQueryable<TEntity> queryable = _dbSet;
+            if (filter != null)
+            {
+                queryable = queryable.Where(filter);
+            }
 
+            if (include != null)
+            {
+                queryable = include(queryable);
+            }
+
+            return queryable.ToList();
+        }
         public virtual IList<TEntity> GetDynamic(Expression<Func<TEntity, bool>> filter = null,
             string orderBy = null,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null
