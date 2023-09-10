@@ -33,29 +33,29 @@ namespace Membership.Services
             _userManager.Dispose();
             //_currentUserService.Dispose();
         }
-        public (IList<ApplicationUser> records, int total, int totalDisplay) GetAll(int pageIndex, int pageSize, string searchText, string sortText)
-        {
-            var users = new List<ApplicationUser>();
-            var columnsMap = new Dictionary<string, Expression<Func<ApplicationUser, object>>>()
-            {
-                ["fullName"] = x => x.FullName,
-                ["userName"] = x => x.UserName,
-                ["email"] = x => x.Email
-            };
+        //public (IList<ApplicationUser> records, int total, int totalDisplay) GetAll(int pageIndex, int pageSize, string searchText, string sortText)
+        //{
+        //    var users = new List<ApplicationUser>();
+        //    var columnsMap = new Dictionary<string, Expression<Func<ApplicationUser, object>>>()
+        //    {
+        //        ["fullName"] = x => x.FullName,
+        //        ["userName"] = x => x.UserName,
+        //        ["email"] = x => x.Email
+        //    };
 
-            var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
-            var total = query.CountAsync();
+        //    var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
+        //    var total = query.CountAsync();
 
-            query = query.Where(x => !x.IsDeletedRole &&
-                x.RoleStatus != EnumRoles.SuperAdmin &&
-                (string.IsNullOrWhiteSpace(searchText) || x.FullName.Contains(searchText) ||
-                x.UserName.Contains(searchText) || x.Email.Contains(searchText)));
+        //    query = query.Where(x => !x.IsDeletedRole &&
+        //        x.RoleStatus != EnumRoles.SuperAdmin &&
+        //        (string.IsNullOrWhiteSpace(searchText) || x.FullName.Contains(searchText) ||
+        //        x.UserName.Contains(searchText) || x.Email.Contains(searchText)));
 
-            var totalDisplay = query.CountAsync();
-            var result = query.AsNoTracking().ToList();
-            //var total = result.Count();
-            return (result, 0, 0);
-        }
+        //    var totalDisplay = query.CountAsync();
+        //    var result = query.AsNoTracking().ToList();
+        //    //var total = result.Count();
+        //    return (result, 0, 0);
+        //}
         //public (IList<ApplicationUser> records, int total, int totalDisplay) GetAllAdmin(int pageIndex, int pageSize, string searchText, string sortText)
         //{
         //    var users = new List<ApplicationUser>();

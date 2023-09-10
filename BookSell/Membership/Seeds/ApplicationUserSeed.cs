@@ -14,10 +14,10 @@ namespace Membership.Seeds
 				{
 					Id = "e9b3be8c-99c5-42c7-8f2e-1eb39f6d9125",
 		  		    FullName = "Admin",
-					UserName = "admin@stackOverflow.com",
-					NormalizedUserName = "ADMIN@STACKOVERFLOW.COM",
-					Email = "admin@stackOverflow.com",
-					NormalizedEmail = "ADMIN@STACKOVERFLOW.COM",
+					UserName = "admin@gmail.com",
+					NormalizedUserName = "ADMIN@GMAIL.COM",
+					Email = "admin@gmail.com",
+					NormalizedEmail = "ADMIN@GMAIL.COM",
 					LockoutEnabled = true,
 					//SecurityStamp = String(),
 					EmailConfirmed = true
@@ -26,10 +26,10 @@ namespace Membership.Seeds
 				{
 					Id = "8f3d96ce-76ec-4992-911a-33ceB81fa29d",
 					FullName = "sarwar",
-					UserName = "user@stackOverflow.com",
-					NormalizedUserName = "USER@STACKOVERFLOW.COM",
-					Email = "user@stackOverflow.com",
-					NormalizedEmail = "USER@STACKOVERFLOW.COM",
+					UserName = "user@gmail.com",
+					NormalizedUserName = "USER@GMAIL.COM",
+					Email = "user@gmail.com",
+					NormalizedEmail = "USER@GMAIL.COM",
 					LockoutEnabled = true,
 					//SecurityStamp = Guid.NewGuid().ToString(),
 					EmailConfirmed = true

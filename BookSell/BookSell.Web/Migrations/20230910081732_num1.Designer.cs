@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BookSell.Web.Migrations.ApplicationDb
+namespace BookSell.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230819160308_num2")]
-    partial class num2
+    [Migration("20230910081732_num1")]
+    partial class num1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -135,47 +135,47 @@ namespace BookSell.Web.Migrations.ApplicationDb
                         {
                             Id = "e9b3be8c-99c5-42c7-8f2e-1eb39f6d9125",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "10068737-daa0-4197-b169-49d5671c556f",
+                            ConcurrencyStamp = "e2910ada-9160-468a-aba1-3f505beffafe",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "admin@stackOverflow.com",
+                            Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             FullName = "Admin",
                             IsActiveRole = true,
                             IsBlockedRole = false,
                             IsDeletedRole = false,
                             LockoutEnabled = true,
-                            NormalizedEmail = "ADMIN@STACKOVERFLOW.COM",
-                            NormalizedUserName = "ADMIN@STACKOVERFLOW.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDvO1sbJFPDdM4mzMBKZAsQDF+/qKOHPL2HdGF7jnoZI9JZR/xEZ5g/Sbruy+MZ30A==",
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAB5qBqPeo2+ouPvseS3YZp0wbNqii1kfOvrZnQOJRPnKHz9JPcWRedGgq+Wb+mmrA==",
                             PhoneNumberConfirmed = false,
                             RoleStatus = 0,
-                            SecurityStamp = "dc8ebe6b-61ed-4743-b50c-c0358963e94e",
+                            SecurityStamp = "0a73ce29-ce5a-4fb0-9d26-5f2170951449",
                             Status = false,
                             TwoFactorEnabled = false,
-                            UserName = "admin@stackOverflow.com"
+                            UserName = "admin@gmail.com"
                         },
                         new
                         {
                             Id = "8f3d96ce-76ec-4992-911a-33ceB81fa29d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "796efd56-fa05-4a2a-b5db-ec52ba18af65",
+                            ConcurrencyStamp = "96e4852b-ffe1-4273-9dea-0a9218443722",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "user@stackOverflow.com",
+                            Email = "user@gmail.com",
                             EmailConfirmed = true,
                             FullName = "sarwar",
                             IsActiveRole = true,
                             IsBlockedRole = false,
                             IsDeletedRole = false,
                             LockoutEnabled = true,
-                            NormalizedEmail = "USER@STACKOVERFLOW.COM",
-                            NormalizedUserName = "USER@STACKOVERFLOW.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHITieEHKeecII6PYfrYcqlkJb2tNE/85yDEJI0qArvxxW2okooFGIPa4+Dph1h5ug==",
+                            NormalizedEmail = "USER@GMAIL.COM",
+                            NormalizedUserName = "USER@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAlnGh8kSE+G7O/G9JjjpgsA+A1PoRDcQPToIpv7kRzAVgrXl9aTBn97oD915BZr+A==",
                             PhoneNumberConfirmed = false,
                             RoleStatus = 0,
-                            SecurityStamp = "0c5df914-6533-47e2-b7c0-e4e8147bd79c",
+                            SecurityStamp = "8cac098b-5056-452f-90dc-2d8d528e33a2",
                             Status = false,
                             TwoFactorEnabled = false,
-                            UserName = "user@stackOverflow.com"
+                            UserName = "user@gmail.com"
                         });
                 });
 
@@ -187,19 +187,9 @@ namespace BookSell.Web.Migrations.ApplicationDb
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("RoleId1")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
-
-                    b.HasIndex("RoleId1");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("AspNetUserRoles");
 
@@ -261,7 +251,7 @@ namespace BookSell.Web.Migrations.ApplicationDb
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "638280793880915765",
+                            ConcurrencyStamp = "638299522519353711",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActiveRole = true,
                             IsDeletedRole = false,
@@ -272,7 +262,7 @@ namespace BookSell.Web.Migrations.ApplicationDb
                         new
                         {
                             Id = "e943ffBf-65a4-4d42-bb74-f2ca9ea8d22a",
-                            ConcurrencyStamp = "638280793880920549",
+                            ConcurrencyStamp = "638299522519357981",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActiveRole = true,
                             IsDeletedRole = false,
@@ -379,19 +369,11 @@ namespace BookSell.Web.Migrations.ApplicationDb
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Membership.Entities.Role", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId1");
-
                     b.HasOne("Membership.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Membership.Entities.ApplicationUser", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Membership.Entities.RoleClaim", b =>

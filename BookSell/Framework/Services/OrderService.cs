@@ -27,10 +27,12 @@ namespace Framework.Services
                 Get(x=>x.Id==id,p=>p.Include(q=>q.Product).Include(r=>r.OrderHeader)).FirstOrDefault();
              return detailsObj;  
         }
-        public (IList<OrderDetails> orderDetails, int total, int totalDisplay) GetDetails(int pageindex, int Pagesize,
+        public (IList<OrderHeader> orderHeaders, int total, int totalDisplay) GetDetails(int pageindex, int Pagesize,
                                                                                    string searchText, string orderBy)
         {
-            var result = _sellUnitOfWork.OrderDetailsRepository.GetDynamic(null, orderBy, "OrderHeader,Product", pageindex, Pagesize, true);
+            var result = _sellUnitOfWork.OrderHeaderRepository.
+                GetDynamic(null, orderBy, "AUser", pageindex, Pagesize, true);
+
             return (result.data, result.total, result.totalDisplay);
         }
     }
