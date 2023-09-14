@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookSell.Web.Migrations.Framework
 {
     [DbContext(typeof(FrameworkContext))]
-    [Migration("20230910082203_num2")]
+    [Migration("20230914094246_num2")]
     partial class num2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -43,14 +43,13 @@ namespace BookSell.Web
             builder.RegisterType<Product>().AsSelf();
             builder.RegisterType<OrderDetailModel>().AsSelf();
             builder.RegisterType<UserModel>().AsSelf();
+			builder.RegisterType<OrderDetailsVM>().AsSelf();
 
-            builder.RegisterType<ShoppingCartVM>().AsSelf();
+			builder.RegisterType<ShoppingCartVM>().AsSelf();
             
             //builder.RegisterType<FileHelper>().As<IFileHelper>()
             //    .InstancePerLifetimeScope();
-
-           
-
+          
             base.Load(builder);
         }
     }

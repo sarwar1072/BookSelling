@@ -33,23 +33,8 @@ namespace BookSell.Web.Areas.Admin.Models.OrderDetailsModel
         public DateTime ShippingDate { get; set; }
         public IEnumerable<OrderHeader> OrderHeaders { get; set; }
         public IEnumerable<OrderDetailsVM> OrderDetails { get; set; }
-       // public IEnumerable<OrderDetailsVM> OrderDetailsVM { get; set; }
-        public void Submitorder()
-        {
-            var entity = new OrderDetails {
-              // OrderHeader.Name = Name,
-                //OrderHeader.PhoneNumber=PhoneNumber,
-                //OrderHeader.StreetAddress=StreetAddress,
-                //OrderHeader.City=City,
-                //OrderHeader.State=State,
-                //OrderHeader.PostalCode=PostalCode,
-                //OrderHeader.OrderDate=OrderDate,
-                //OrderHeader.OrderStatus=OrderStatus,
-              //  Count=Count,
-                            
-            };
+        // public IEnumerable<OrderDetailsVM> OrderDetailsVM { get; set; }
 
-        }
         public void Load(int id)
         {
             var data = _ordrService.GetDetails(id);
@@ -68,9 +53,8 @@ namespace BookSell.Web.Areas.Admin.Models.OrderDetailsModel
                 //Title = data.Product.Title;
                 //Price = data.Product.Price;
                 //Count = data.Count;
-               OrderDetails =new List<OrderDetailsVM>() ;
-                
-                
+                OrderDetails = new List<OrderDetailsVM>();
+
             }
         }
 

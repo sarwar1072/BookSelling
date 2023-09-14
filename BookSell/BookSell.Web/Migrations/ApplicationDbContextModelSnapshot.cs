@@ -133,7 +133,7 @@ namespace BookSell.Web.Migrations
                         {
                             Id = "e9b3be8c-99c5-42c7-8f2e-1eb39f6d9125",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e2910ada-9160-468a-aba1-3f505beffafe",
+                            ConcurrencyStamp = "7dd4d444-fc93-41cc-b5da-fe28b0f188ba",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
@@ -144,10 +144,10 @@ namespace BookSell.Web.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAB5qBqPeo2+ouPvseS3YZp0wbNqii1kfOvrZnQOJRPnKHz9JPcWRedGgq+Wb+mmrA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIZmd06zv3JARI/31V0J2rj25c1LdMip8mjDaz+qFNvT2OjPuNxvBx9Vro7Wq+rUiw==",
                             PhoneNumberConfirmed = false,
                             RoleStatus = 0,
-                            SecurityStamp = "0a73ce29-ce5a-4fb0-9d26-5f2170951449",
+                            SecurityStamp = "fc2a3190-efd0-4fe1-bb2f-62b8e5f65ac0",
                             Status = false,
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
@@ -156,7 +156,7 @@ namespace BookSell.Web.Migrations
                         {
                             Id = "8f3d96ce-76ec-4992-911a-33ceB81fa29d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "96e4852b-ffe1-4273-9dea-0a9218443722",
+                            ConcurrencyStamp = "5920ad2f-8304-4b1d-b3c6-44c4656c221b",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
                             EmailConfirmed = true,
@@ -167,10 +167,10 @@ namespace BookSell.Web.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "USER@GMAIL.COM",
                             NormalizedUserName = "USER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAlnGh8kSE+G7O/G9JjjpgsA+A1PoRDcQPToIpv7kRzAVgrXl9aTBn97oD915BZr+A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGjHU+Wut9rAK0/Ve/31JsAbYv6LSmGO6InABIhrhKcP+mChBZqBvltpkU2Rla5Tdg==",
                             PhoneNumberConfirmed = false,
                             RoleStatus = 0,
-                            SecurityStamp = "8cac098b-5056-452f-90dc-2d8d528e33a2",
+                            SecurityStamp = "acc125f7-ab9e-4492-921b-09c8aecce05a",
                             Status = false,
                             TwoFactorEnabled = false,
                             UserName = "user@gmail.com"
@@ -249,7 +249,7 @@ namespace BookSell.Web.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "638299522519353711",
+                            ConcurrencyStamp = "638303029068016026",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActiveRole = true,
                             IsDeletedRole = false,
@@ -260,7 +260,7 @@ namespace BookSell.Web.Migrations
                         new
                         {
                             Id = "e943ffBf-65a4-4d42-bb74-f2ca9ea8d22a",
-                            ConcurrencyStamp = "638299522519357981",
+                            ConcurrencyStamp = "638303029068026947",
                             CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActiveRole = true,
                             IsDeletedRole = false,

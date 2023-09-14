@@ -6,6 +6,9 @@ using Framework.UnitOfWorkPro;
 using Microsoft.AspNetCore.Mvc;
 using Membership.Seeds;
 using Microsoft.AspNetCore.Authorization;
+using Framework;
+using Razorpay.Api;
+using Framework.Entities;
 
 namespace BookSell.Web.Areas.Admin.Controllers
 {
@@ -37,7 +40,6 @@ namespace BookSell.Web.Areas.Admin.Controllers
 			//model.Load(id);
 			return View(OrderDetailsVM);
 		}
-
 		public IActionResult GetOrder()
 		{
 			var tableModel = new DataTablesAjaxRequestModel(Request);

@@ -266,7 +266,7 @@ namespace DataAccessLayer
             }
             return query.ToList();
         }
-        public TEntity GetFirstOrDefault(Expression<Func<TEntity, bool>> filter = null, string includeProperties = null)
+        public TEntity GetFirstOrDefault(Expression<Func<TEntity, bool>> filter = null, string? includeProperties = null)
         {
             IQueryable< TEntity> query = _dbSet;
             if (filter != null)
@@ -282,8 +282,39 @@ namespace DataAccessLayer
             }
             return query.FirstOrDefault();
         }
+		public TEntity GetFirstOrDefault2(Expression<Func<TEntity, bool>> filter, string? includeProperties = null, bool tracked = true)
+		{
+			if (tracked)
+			{
+				IQueryable<TEntity> query = _dbSet;
 
-        public virtual (IList<TEntity> data, int total, int totalDisplay) Get(
+				query = query.Where(filter);
+				if (includeProperties != null)
+				{
+					foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+					{
+						query = query.Include(includeProp);
+					}
+				}
+				return query.FirstOrDefault();
+			}
+			else
+			{
+				IQueryable<TEntity> query = _dbSet.AsNoTracking();
+
+				query = query.Where(filter);
+				if (includeProperties != null)
+				{
+					foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+					{
+						query = query.Include(includeProp);
+					}
+				}
+				return query.FirstOrDefault();
+			}
+		}
+
+		public virtual (IList<TEntity> data, int total, int totalDisplay) Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, int pageIndex = 1, int pageSize = 10, bool isTrackingOff = false)

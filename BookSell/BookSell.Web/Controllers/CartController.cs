@@ -22,8 +22,7 @@ namespace BookSell.Web.Controllers
         public ShoppingCartVM ShoppingCartVM { get; set; }    
         public CartController(ISellUnitOfWork sellUnitOfWork)
         {
-            _sellUnitOfWork = sellUnitOfWork;
-                   
+            _sellUnitOfWork = sellUnitOfWork;                   
         }
      
         public IActionResult Index()
@@ -137,8 +136,8 @@ namespace BookSell.Web.Controllers
             ShoppingCartVM.ListCart = _sellUnitOfWork.ShoppingCartRepository.GetAll(x => x.ApplicationUserId == claim.Value, 
                                                                                             includeProperties: "Product");
 
-            ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
-            ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
+            ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusApproved;
+            ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusApproved;
             ShoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
             ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
 
@@ -164,9 +163,8 @@ namespace BookSell.Web.Controllers
             HttpContext.Session.SetInt32(SD.ssShoppingCart, 0);
 
             return RedirectToAction("OrderConfirmation", "Cart", new { id = ShoppingCartVM.OrderHeader.Id });
-
-
         }
+
         public IActionResult OrderConfirmation(int id)
         {
             OrderHeader orderHeader = _sellUnitOfWork.OrderHeaderRepository.GetFirstOrDefault(u => u.Id == id);
