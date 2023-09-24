@@ -16,7 +16,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
 
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BookSell</a>
@@ -37,7 +37,6 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>
-
                             </div>
                         </li>
 
@@ -53,7 +52,7 @@
                    
                         @if (HttpContextAccessor.HttpContext.Session.GetInt32(SD.ssShoppingCart) != null)
                         {
-                            <li style="color:white;">
+                            <li style="color:darkseagreen;">
                                 <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
                                     @{ var count = HttpContextAccessor.HttpContext.Session.GetInt32(SD.ssShoppingCart); }
                                     <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
@@ -65,7 +64,7 @@
                         }
                         else
                         {
-                            <li style="color:white;">
+                            <li style="color:darkseagreen;">
                                 <a href="#" class="nav-link">
                                     <i class="fas fa-shopping-cart"></i> &nbsp; (0)
                                 </a>
@@ -83,7 +82,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-white-50 bg-primary">
+    <footer class="border-top footer text-dark-50 bg-white">
         <div class="container ">
             &copy; 2022 - BookSell
         </div>
