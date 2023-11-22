@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,6 +20,7 @@ namespace Framework.Entities
         public double Price50 { get; set; }
         public double Price100 { get; set; }
         public string ImageUrl { get; set; }
+        public string BookPdfUrl { get; set; }
         public int CategoryId { get; set; }       
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }

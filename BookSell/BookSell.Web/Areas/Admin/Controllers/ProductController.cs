@@ -44,6 +44,7 @@ namespace BookSell.Web.Areas.Admin.Controllers
                 try
                 {
                     model.ImageUrl = _fileHelper.UploadFile(model.formFile);
+                    model.BookPdfUrl = _fileHelper.UploadPdf(model.BookPdf);
                     model.AddProduct();
                     model.Response = new ResponseModel("added successfully", ResponseType.Success);
                     return RedirectToAction("Index");

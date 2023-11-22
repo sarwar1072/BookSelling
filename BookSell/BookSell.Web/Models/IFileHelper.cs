@@ -10,5 +10,6 @@ namespace BookSell.Web.Models
     {
         void DeleteFile(string imageUrl);
         string UploadFile(IFormFile file);
+        string UploadPdf(IFormFile formFile);
     }
 }

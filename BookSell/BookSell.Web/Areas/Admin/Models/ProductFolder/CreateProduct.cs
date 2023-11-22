@@ -36,6 +36,9 @@ namespace BookSell.Web.Areas.Admin.Models.ProductFolder
         public string ImageUrl { get; set; }
         [Required]
         public IFormFile formFile { get; set; }
+        public IFormFile BookPdf { get; set; }
+        public string BookPdfUrl { get; set; }
+
         public int CategoryId { get; set; }        
         public int CoverTypeId { get; set; }
 
@@ -57,6 +60,7 @@ namespace BookSell.Web.Areas.Admin.Models.ProductFolder
                 Price50=Price50,
                 Price100=Price100,
                 ImageUrl= ImageUrl,
+                BookPdfUrl= BookPdfUrl, 
                 CoverTypeId =CoverTypeId,
                 CategoryId=CategoryId
             };

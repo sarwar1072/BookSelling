@@ -29,6 +29,18 @@ namespace BookSell.Web.Models
                 File.Delete(_env.WebRootPath + imageUrl);
             }
         }
+        public string UploadPdf(IFormFile formFile)
+        {
+            var uploads = Path.Combine(_env.WebRootPath, "PDFFile");
+            bool exists = Directory.Exists(uploads);
+            if (!exists)
+                Directory.CreateDirectory(uploads);
+            //saving file
+            var fileName = GenerateFileName(formFile.FileName);
+            var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create);
+            formFile.CopyToAsync(fileStream);
+            return "/PDFFile/" + fileName;
+        }
         public string UploadFile(IFormFile file)
         {
             var uploads = Path.Combine(_env.WebRootPath, "images");
