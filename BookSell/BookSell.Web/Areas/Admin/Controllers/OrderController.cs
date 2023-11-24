@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Membership.Seeds;
 using Microsoft.AspNetCore.Authorization;
 using Framework;
-using Razorpay.Api;
 using Framework.Entities;
 
 namespace BookSell.Web.Areas.Admin.Controllers
