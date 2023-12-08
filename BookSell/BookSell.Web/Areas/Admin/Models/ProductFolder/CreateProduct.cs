@@ -48,7 +48,6 @@ namespace BookSell.Web.Areas.Admin.Models.ProductFolder
         public CreateProduct() : base() { }
         public void AddProduct()
         {
-           // ImageUrl=_fileHelper.UploadFile(formFile);
             var product = new Framework.Entities.Product
             {
                 Title=Title,

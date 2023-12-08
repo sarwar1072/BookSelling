@@ -3,6 +3,7 @@ using BookSell.Web.Models;
 using Framework;
 using Framework.Entities;
 using Framework.UnitOfWorkPro;
+using Membership.Entities;
 using Membership.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -105,17 +106,14 @@ namespace BookSell.Web.Controllers
                 ListCart = _sellUnitOfWork.ShoppingCartRepository.GetAll(c => c.ApplicationUserId == claim.Value,
                 includeProperties: "Product")
             };
-           // var model = new ShoppingCartVM();
-           
+           // var model = new ShoppingCartVM();         
             ShoppingCartVM.OrderHeader.AUser = ShoppingCartVM.GetId(claim.Value);
-
             foreach (var list in ShoppingCartVM.ListCart)
             {
                 list.Price = SD.GetPriceBasedOnQuantity(list.Count, list.Product.Price,
                                                     list.Product.Price50, list.Product.Price100);
                 ShoppingCartVM.OrderHeader.OrderTotal += (list.Price * list.Count);
             }
-
             ShoppingCartVM.OrderHeader.Name = ShoppingCartVM.OrderHeader.AUser.FullName;
             ShoppingCartVM.OrderHeader.PhoneNumber = ShoppingCartVM.OrderHeader.AUser.PhoneNumber;
             ShoppingCartVM.OrderHeader.StreetAddress = ShoppingCartVM.OrderHeader.AUser.StreetAddress;
@@ -132,13 +130,13 @@ namespace BookSell.Web.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            ShoppingCartVM.OrderHeader.AUser = ShoppingCartVM.GetId(claim.Value);
+          //  ShoppingCartVM.OrderHeader.AUser = ShoppingCartVM.GetId(claim.Value); for this line showed  duplicate key error
             ShoppingCartVM.ListCart = _sellUnitOfWork.ShoppingCartRepository.GetAll(x => x.ApplicationUserId == claim.Value, 
                                                                                             includeProperties: "Product");
 
             ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusApproved;
             ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusApproved;
-            ShoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
+            // ShoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;for this line showed  duplicate key error
             ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
 
             _sellUnitOfWork.OrderHeaderRepository.Add(ShoppingCartVM.OrderHeader);

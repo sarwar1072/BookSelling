@@ -35,8 +35,8 @@ namespace BookSell.Web.Areas.Admin.Controllers
             var model = new CreateProduct();
             return View(model);
         }
-        [HttpPost, ValidateAntiForgeryToken]
 
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult AddProduct(CreateProduct model)
         {
             if (ModelState.IsValid)

@@ -29,7 +29,6 @@ namespace BookSell.Web.Areas.Admin.Controllers
             return View(model);
         }
         [HttpPost, ValidateAntiForgeryToken]
-
         public IActionResult AddCategory(CreateCategory model)
         {
             if (ModelState.IsValid)
