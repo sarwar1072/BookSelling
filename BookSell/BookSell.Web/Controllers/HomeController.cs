@@ -22,8 +22,8 @@ namespace BookSell.Web.Controllers
         {
            _productService=productService;
             _sellUnitOfWork=sellUnitOfWork;
-
         }
+
         public IActionResult Index(string term = "", int currentPage = 1)
         {
           //  var product = _productService.GetForConsumer();
