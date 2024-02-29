@@ -138,11 +138,8 @@ namespace Membership.Services
         //            {
         //                throw new Exception(nameof(Role));
         //            }
-
         //            var roleSaveResult = _userManager.AddToRoleAsync(user, role.Name);
-
         //            scope.Complete();
-
         //            return user.Id;
         //        }
         //        catch (Exception ex)

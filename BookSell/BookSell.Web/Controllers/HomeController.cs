@@ -24,9 +24,10 @@ namespace BookSell.Web.Controllers
             _sellUnitOfWork=sellUnitOfWork;
 
         }
-        public IActionResult Index()
+        public IActionResult Index(string term = "", int currentPage = 1)
         {
-            var product = _productService.GetForConsumer();
+          //  var product = _productService.GetForConsumer();
+            var listOfProduct = _productService.PagintList(term, true, currentPage);
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             if (claim != null)
@@ -37,7 +38,7 @@ namespace BookSell.Web.Controllers
 
                 HttpContext.Session.SetInt32(SD.ssShoppingCart, count);
             }
-            return View(product);
+            return View(listOfProduct);
         }
 
         public IActionResult Details(int id)

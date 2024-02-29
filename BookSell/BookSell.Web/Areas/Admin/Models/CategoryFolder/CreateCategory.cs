@@ -10,7 +10,7 @@ namespace BookSell.Web.Areas.Admin.Models.CategoryFolder
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public CreateCategory(ICategoryService categoryService) : base()
+        public CreateCategory(ICategoryService categoryService) : base(categoryService)
         {
         }
         public CreateCategory() : base()

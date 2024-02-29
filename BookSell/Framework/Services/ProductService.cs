@@ -63,6 +63,29 @@ namespace Framework.Services
             return _sellUnitOfWork.ProductRepository.GetAll().OrderBy(Product => Product.CategoryId).ThenBy(
               Product  => Product.CoverTypeId);
         }
+        public ProductDetails PagintList(string term = "", bool paging = false, int currentPage = 0)
+        {
+            var data = new ProductDetails();
+            var dataList = _sellUnitOfWork.ProductRepository.GetAll(null, null, "Category,CoverType");
+            if (!string.IsNullOrEmpty(term))
+            {
+                term = term.ToLower();
+                dataList = dataList.Where(a => a.Title.ToLower().StartsWith(term)).ToList();
+            }
+            if (paging)
+            {
+                int pageSize = 3;
+                int count = dataList.Count;
+                int TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+                dataList = dataList.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+                data.PageSize = pageSize;
+                data.CurrentPage = currentPage;
+                data.TotalPages = TotalPages;
+            }
+            data.ProductList = dataList.AsQueryable();
+            return data;
+        }
+
         public (IList<Product> product ,int total,int totalDisplay)GetProduct(int pageindex,int pagesize,
                                                                                string searchText,string orderBy)
         {

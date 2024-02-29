@@ -32,7 +32,6 @@ namespace Framework.Services
         {
             var result = _sellUnitOfWork.OrderHeaderRepository.
                 GetDynamic(null, orderBy, "AUser", pageindex, Pagesize, true);
-
             return (result.data, result.total, result.totalDisplay);
         }
     }

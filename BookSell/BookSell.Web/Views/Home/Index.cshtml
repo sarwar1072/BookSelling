@@ -1,12 +1,21 @@
-﻿@model IEnumerable<Framework.Entities.Product>
+﻿@model Framework.Entities.ProductDetails
 @{
     ViewData["Title"] = "Index";
 }
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<section class="search-bar">
+    <form method="get" asp-action="Index">
+        <!-- Search form -->
+        <input type="text" name="term" placeholder="Search" aria-label="Search">
+        @*         <input class="" type="text" name="term" placeholder="search here">
+        *@        <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+        <a class="btn btn-primary" href="/Home/Index">All</a>
+    </form>
+</section>
 <div class="row pb-3 backgroundWhite">
-    @foreach (var product in Model)
+    @foreach (var product in Model.ProductList)
     {
         <div class="col-lg-3 col-md-6" >
             <div class="row p-2">
@@ -31,4 +40,18 @@
             </div>
         </div>
         }
+</div>
+
+<div class="pagination">
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <a href="/Home/Index?currentPage=@i&term=@Model.Term" class="active">@i</a>
+        }
+        else
+        {
+            <a href="/Home/Index?currentPage=@i&term=@Model.Term">@i</a>
+        }
+    }
 </div>

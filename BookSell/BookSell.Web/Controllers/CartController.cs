@@ -30,7 +30,6 @@ namespace BookSell.Web.Controllers
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-
             var ShoppingCartVM = new ShoppingCartVM()
             {
                 OrderHeader = new OrderHeader(),
@@ -38,7 +37,6 @@ namespace BookSell.Web.Controllers
                   includeProperties: "Product")
             };
             ShoppingCartVM.OrderHeader.OrderTotal = 0;
-
             foreach (var list in ShoppingCartVM.ListCart)
             {
                 list.Price = SD.GetPriceBasedOnQuantity(list.Count, list.Product.Price,
@@ -69,7 +67,9 @@ namespace BookSell.Web.Controllers
                             (c => c.Id == cartId, includeProperties: "Product");
             if (cart.Count == 1)
             {
-                var cnt = _sellUnitOfWork.ShoppingCartRepository.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
+                var cnt = _sellUnitOfWork.ShoppingCartRepository.
+                    GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
+
                 _sellUnitOfWork.ShoppingCartRepository.Remove(cart);
                 _sellUnitOfWork.Save();
                 HttpContext.Session.SetInt32(SD.ssShoppingCart, cnt - 1);
@@ -129,19 +129,13 @@ namespace BookSell.Web.Controllers
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-
-          //  ShoppingCartVM.OrderHeader.AUser = ShoppingCartVM.GetId(claim.Value); for this line showed  duplicate key error
             ShoppingCartVM.ListCart = _sellUnitOfWork.ShoppingCartRepository.GetAll(x => x.ApplicationUserId == claim.Value, 
                                                                                             includeProperties: "Product");
-
             ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusApproved;
             ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusApproved;
-            // ShoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;for this line showed  duplicate key error
             ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
-
             _sellUnitOfWork.OrderHeaderRepository.Add(ShoppingCartVM.OrderHeader);
             _sellUnitOfWork.Save();
-
             foreach (var item in ShoppingCartVM.ListCart)
             {
                 item.Price = SD.GetPriceBasedOnQuantity(item.Count, item.Product.Price,
@@ -159,7 +153,6 @@ namespace BookSell.Web.Controllers
             _sellUnitOfWork.ShoppingCartRepository.Remove(ShoppingCartVM.ListCart);
             _sellUnitOfWork.Save();
             HttpContext.Session.SetInt32(SD.ssShoppingCart, 0);
-
             return RedirectToAction("OrderConfirmation", "Cart", new { id = ShoppingCartVM.OrderHeader.Id });
         }
 

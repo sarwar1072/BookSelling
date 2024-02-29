@@ -9,7 +9,7 @@ namespace BookSell.Web.Areas.Admin.Models.CategoryFolder
 {
     public class CategoryModel:CategoryBaseModel
     {
-        public CategoryModel(ICategoryService categoryService):base()
+        public CategoryModel(ICategoryService categoryService):base(categoryService)
         {
         }
         public CategoryModel():base()

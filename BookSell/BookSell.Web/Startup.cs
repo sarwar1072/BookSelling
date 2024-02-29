@@ -34,15 +34,11 @@ namespace BookSell.Web
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             this.Configuration = builder.Build();
-
             WebHostEnvironment = env;
         }
-
-        public static ILifetimeScope AutofacContainer { get; private set; }
+       public static ILifetimeScope AutofacContainer { get; private set; }
         public IWebHostEnvironment WebHostEnvironment { get; set; }
-
        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureContainer(ContainerBuilder builder)
         {
