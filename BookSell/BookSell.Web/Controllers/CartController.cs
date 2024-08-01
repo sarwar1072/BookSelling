@@ -5,6 +5,7 @@ using Framework.Entities;
 using Framework.UnitOfWorkPro;
 using Membership.Entities;
 using Membership.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,30 +26,38 @@ namespace BookSell.Web.Controllers
         {
             _sellUnitOfWork = sellUnitOfWork;                   
         }
-     
+        [Authorize]
         public IActionResult Index()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            var ShoppingCartVM = new ShoppingCartVM()
+            try
             {
-                OrderHeader = new OrderHeader(),
-                ListCart = _sellUnitOfWork.ShoppingCartRepository.GetAll(u => u.ApplicationUserId == claim.Value,
-                  includeProperties: "Product")
-            };
-            ShoppingCartVM.OrderHeader.OrderTotal = 0;
-            foreach (var list in ShoppingCartVM.ListCart)
-            {
-                list.Price = SD.GetPriceBasedOnQuantity(list.Count, list.Product.Price,
-                                                    list.Product.Price50, list.Product.Price100);
-                ShoppingCartVM.OrderHeader.OrderTotal += (list.Price * list.Count);
-                list.Product.Description = SD.ConvertToRawHtml(list.Product.Description);
-                if (list.Product.Description.Length > 100)
+                var ShoppingCartVM = new ShoppingCartVM()
                 {
-                    list.Product.Description = list.Product.Description.Substring(0, 99) + "...";
+                    OrderHeader = new OrderHeader(),
+                    ListCart = _sellUnitOfWork.ShoppingCartRepository.GetAll(u => u.ApplicationUserId == claim.Value,
+                  includeProperties: "Product")
+                };
+                ShoppingCartVM.OrderHeader.OrderTotal = 0;
+                foreach (var list in ShoppingCartVM.ListCart)
+                {
+                    list.Price = SD.GetPriceBasedOnQuantity(list.Count, list.Product.Price,
+                                                        list.Product.Price50, list.Product.Price100);
+                    ShoppingCartVM.OrderHeader.OrderTotal += (list.Price * list.Count);
+                    list.Product.Description = SD.ConvertToRawHtml(list.Product.Description);
+                    if (list.Product.Description.Length > 100)
+                    {
+                        list.Product.Description = list.Product.Description.Substring(0, 99) + "...";
+                    }
                 }
+                return View(ShoppingCartVM);
             }
-            return View(ShoppingCartVM);
+            catch (Exception ex)
+            {
+
+            }
+            return View();
         }
 
         public IActionResult Plus(int cartId)

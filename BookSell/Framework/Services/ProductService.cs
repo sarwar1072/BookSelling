@@ -74,7 +74,7 @@ namespace Framework.Services
             }
             if (paging)
             {
-                int pageSize = 3;
+                int pageSize = 8;
                 int count = dataList.Count;
                 int TotalPages = (int)Math.Ceiling(count / (double)pageSize);
                 dataList = dataList.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
