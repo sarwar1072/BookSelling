@@ -27,6 +27,22 @@ namespace Framework.Services
                 Get(x=>x.Id==id,p=>p.Include(q=>q.Product).Include(r=>r.OrderHeader)).FirstOrDefault();
              return detailsObj;  
         }
+
+        public int NumberOfOrders()
+        {
+            return _sellUnitOfWork.OrderHeaderRepository.GetCount();
+        }
+        public double ToTalRevenue()
+        {
+            var OrdersNo = _sellUnitOfWork.OrderHeaderRepository.GetAll();
+           // var entity = new OrderDetails();
+            double total = 0;  
+            foreach (var item in OrdersNo)
+            {
+                total += item.OrderTotal;
+            }
+            return total;
+        }
         public (IList<OrderHeader> orderHeaders, int total, int totalDisplay) GetDetails(int pageindex, int Pagesize,
                                                                                    string searchText, string orderBy)
         {

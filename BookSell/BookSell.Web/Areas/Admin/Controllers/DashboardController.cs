@@ -17,6 +17,7 @@ namespace BookSell.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var model = new DashboardModel();
+            model.GetAllProperty();
             return View(model);
         }
     }

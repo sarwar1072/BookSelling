@@ -11,5 +11,7 @@ namespace Framework.Services
             
           string searchText, string orderBy);
         OrderDetails GetDetails(int id);
+        double ToTalRevenue();
+        int NumberOfOrders();
     }
 }

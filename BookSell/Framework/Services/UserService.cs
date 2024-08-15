@@ -55,6 +55,11 @@ namespace Framework.Services
         {
             return context.Users.Find(id);
         }
+        public int NumberOfUser()
+        {
+            return context.Users.Count();
+        }
+             
         public void Dispose()
         {
             context?.Dispose();
