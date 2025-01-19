@@ -1,32 +1,12 @@
-﻿@model Framework.Entities.ProductDetails
+﻿@* @model Framework.Entities.ProductDetails
 @{
     ViewData["Title"] = "Index";
 }
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+} *@
 
-
-@* <form method="get" action="/Home/Index">
-    <div class="filter-section">
-        <!-- Category Filter -->
-        <div class="filter-category mt-3">
-            <h6>Shop by Categories</h6>
-            <ul class="list-unstyled filter-list">
-                @foreach (var category in Model.CategoryList)
-                {
-                    <li>
-                        <input type="checkbox" name="categoryIds" class="filter-checkbox" value="@category.Id" />
-                        <label>@category.Name</label>
-                    </li>
-                }
-            </ul>
-        </div>
-
-        <button type="submit" class="btn btn-primary mt-3">Apply Filters</button>
-    </div>
-</form>
- *@
+@* 
 <div class="container">
     <div class="row justify-content-center m-2 p-2">
         <div class="col-lg-6 col-md-8 d-flex flex-wrap">
@@ -76,4 +56,105 @@
             </li>
         }
     </ul>
-</nav>
+</nav> *@
+@model Framework.Entities.ProductDetails
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Sidebar: Filters -->
+        <div class="col-lg-3 col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">Filters</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Categories Filter -->
+                    <h6 class="fw-bold">Shop by Categories</h6>
+                    <ul class="list-group mb-3 ">
+                        @foreach (var tag in Model.CategoryList)
+                        {
+                            <li class="list-group-item">
+                                <input type="checkbox" class="form-check-input me-2 category-filter" id="category-@tag.Id" value="@tag.Id">
+                                <label for="category-@tag.Id" class="form-check-label">@tag.Name</label>
+                            </li>
+                        }
+                    </ul>
+
+                    <!-- Search Bar -->
+                    <h6 class="fw-bold">Search</h6>
+                    <form method="get" asp-action="Index" class="d-flex mb-3">
+                        <input type="text" name="term" class="form-control me-2" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-dark me-2" type="submit"><i class="fa fa-search"></i></button>
+                        <a class="btn btn-primary" href="/Home/Index">All</a>
+                    </form>
+                    <!-- Reset Filters Button -->
+                    <div class="text-center">
+                        <button class="btn btn-outline-danger btn-sm" id="resetFilter">Reset Filters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content: Product List -->
+        <div class="col-lg-9 col-md-8">
+            <div class="row pb-3">
+                @foreach (var product in Model.ProductList)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                        <div class="card h-100" style="border:1px solid #008cba; border-radius: 5px;">
+                            <img src="@product.ImageUrl" class="card-img-top rounded" alt="@product.Title" />
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:#2c3e50">@product.Title</h5>
+                                <p class="card-subtitle text-primary mb-2">by <b>@product.Author</b></p>
+                                <p class="card-text">
+                                    <span class="text-muted">List Price: <strike>$@product.ListPrice.ToString("0.00")</strike></span><br />
+                                    <span style="color:maroon">As low as: <b>$@product.Price100.ToString("0.00")</b></span>
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a asp-action="Details" class="btn btn-primary w-100" asp-route-id="@product.Id">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="/Home/Index?currentPage=@i&term=@Model.Term">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Reset Filters
+    document.getElementById('resetFilter').addEventListener('click', function () {
+        const checkboxes = document.querySelectorAll('.category-filter');
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        });
+        window.location.href = "/Home/Index"; // Redirect to clear filters
+    });
+
+    // Example: Handle checkbox filtering (you'll implement server-side logic)
+    document.querySelectorAll('.category-filter').forEach((checkbox) => {
+        checkbox.addEventListener('change', function () {
+            const selectedCategories = Array.from(document.querySelectorAll('.category-filter:checked'))
+                .map(cb => cb.value)
+                .join(',');
+            window.location.href = `/Home/Index?id=${selectedCategories}`;
+        });
+    });
+</script>

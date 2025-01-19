@@ -78,7 +78,8 @@ namespace Framework.Services
             if (!string.IsNullOrEmpty(term))
             {
                 term = term.ToLower();
-                dataList = dataList.Where(a => a.Title.ToLower().StartsWith(term)).ToList();
+                dataList = dataList.Where(a => a.Title.ToLower().StartsWith(term)|| a.Author.ToLower().StartsWith(term)
+                || a.CoverType.Name.ToLower().StartsWith(term)).ToList();
             }
            
             if (paging)
