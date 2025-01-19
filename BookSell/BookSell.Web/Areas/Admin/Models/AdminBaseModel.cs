@@ -10,7 +10,6 @@ namespace BookSell.Web.Areas.Admin.Models
 {
     public abstract class AdminBaseModel
     {
-
         public MenuModel MenuModel { get; set; }
         public ResponseModel Response
         {
@@ -124,11 +123,9 @@ namespace BookSell.Web.Areas.Admin.Models
                        }
                         }
                     }
-
-
                 }
             };
-        }       
+        }
 
     }
 }

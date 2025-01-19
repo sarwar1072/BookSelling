@@ -16,7 +16,7 @@ namespace Framework.Services
         IList<Category> GetCategories();
         IList<CoverType> GetCoverTypes();
         IEnumerable<Product> GetForConsumer();
-        ProductDetails PagintList(string term = "", bool paging = false, int currentPage = 0);
+        ProductDetails PagintList(int? id, string term = "", bool paging = false, int currentPage = 0);
         Product GetProductWithChild(int id);
 
     }

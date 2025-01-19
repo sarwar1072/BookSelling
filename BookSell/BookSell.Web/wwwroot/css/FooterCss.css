@@ -43,23 +43,23 @@ footer {
         list-style: none;
     }
 
-        footer ul li {
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
+footer ul li {
+margin-bottom: 10px;
+font-size: 14px;
+}
 
-            footer ul li i {
-                margin-right: 10px;
-            }
+footer ul li i {
+    margin-right: 10px;
+}
 
-            footer ul li a {
-                color: #fff;
-                transition: color 0.2s;
-            }
+footer ul li a {
+    color: #fff;
+    transition: color 0.2s;
+}
 
-                footer ul li a:hover {
-                    color: #ddd;
-                }
+    footer ul li a:hover {
+        color: #ddd;
+    }
 
     footer .text-center {
         margin-top: 20px;

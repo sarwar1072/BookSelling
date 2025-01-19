@@ -24,10 +24,11 @@ namespace BookSell.Web.Controllers
             _sellUnitOfWork=sellUnitOfWork;
         }
 
-        public IActionResult Index(string term = "", int currentPage = 1)
+        public IActionResult Index(int? id, string term = "", int currentPage = 1 )
         {
-          //  var product = _productService.GetForConsumer();
-            var listOfProduct = _productService.PagintList(term, true, currentPage);
+            //  var product = _productService.GetForConsumer();
+
+            var listOfProduct = _productService.PagintList(id,term, true, currentPage );
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             if (claim != null)

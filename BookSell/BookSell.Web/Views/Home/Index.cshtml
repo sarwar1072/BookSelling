@@ -6,6 +6,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+@* <form method="get" action="/Home/Index">
+    <div class="filter-section">
+        <!-- Category Filter -->
+        <div class="filter-category mt-3">
+            <h6>Shop by Categories</h6>
+            <ul class="list-unstyled filter-list">
+                @foreach (var category in Model.CategoryList)
+                {
+                    <li>
+                        <input type="checkbox" name="categoryIds" class="filter-checkbox" value="@category.Id" />
+                        <label>@category.Name</label>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Apply Filters</button>
+    </div>
+</form>
+ *@
+<div class="container">
+    <div class="row justify-content-center m-2 p-2">
+        <div class="col-lg-6 col-md-8 d-flex flex-wrap">
+            @foreach (var tag in Model.CategoryList)
+            {
+                <a href="/Home/Index?id=@tag.Id" class="btn btn-outline-danger me-1 mb-1">@tag.Name</a>
+            }
+        </div>
+    </div>
+</div>
 <section class="search-bar mb-3">
     <form method="get" asp-action="Index" class="d-flex">
         <input type="text" name="term" class="form-control me-2" placeholder="Search" aria-label="Search">

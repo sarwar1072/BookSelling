@@ -64,8 +64,7 @@ namespace BookSell.Web.Areas.Admin.Models.ProductFolder
                 CategoryId=CategoryId
             };
             _productService.AddProduct(product);
-        }
-       
+        }      
         public IList<SelectListItem> ListOfCoverType()
         {
             var cover = new List<SelectListItem>();

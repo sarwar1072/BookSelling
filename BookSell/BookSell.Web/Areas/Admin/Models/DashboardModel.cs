@@ -15,7 +15,6 @@ namespace BookSell.Web.Areas.Admin.Models
         public int TotalOrders { get; set; }
         public double TotalRevenue { get; set; }
         
-
         protected IOrderService _orderService;
         protected IUserService _userService;
         public DashboardModel(IOrderService order, IUserService userService)
@@ -39,7 +38,6 @@ namespace BookSell.Web.Areas.Admin.Models
             TotalOrders = _orderService.NumberOfOrders();
             TotalRevenue=_orderService.ToTalRevenue();
             TotalUsers=_userService.NumberOfUser();    
-
         }
     }
 }

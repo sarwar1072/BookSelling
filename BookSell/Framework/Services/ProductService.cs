@@ -1,5 +1,6 @@
 ﻿using Framework.Entities;
 using Framework.UnitOfWorkPro;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,15 +64,23 @@ namespace Framework.Services
             return _sellUnitOfWork.ProductRepository.GetAll().OrderBy(Product => Product.CategoryId).ThenBy(
               Product  => Product.CoverTypeId);
         }
-        public ProductDetails PagintList(string term = "", bool paging = false, int currentPage = 0)
+        public ProductDetails PagintList(int? id ,string term = "", bool paging = false, int currentPage = 0)
         {
             var data = new ProductDetails();
+           
             var dataList = _sellUnitOfWork.ProductRepository.GetAll(null, null, "Category,CoverType");
+            var categoryList = _sellUnitOfWork.CategoryRepository.GetAll();
+            data.CategoryList = categoryList.ToList();
+            if (id != null)
+            {
+                dataList = dataList.Where(x => x.CategoryId == id).ToList();
+            }
             if (!string.IsNullOrEmpty(term))
             {
                 term = term.ToLower();
                 dataList = dataList.Where(a => a.Title.ToLower().StartsWith(term)).ToList();
             }
+           
             if (paging)
             {
                 int pageSize = 8;
