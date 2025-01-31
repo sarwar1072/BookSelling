@@ -21,6 +21,10 @@ body {
     margin-bottom: 60px;
     font-family: 'Poppins', sans-serif;
 }
+/*#content1 {
+    margin-top: 80px;*/ /* Adjust if needed */
+/*}*/
+
 /* Pagination links */
 .pagination {
     display: flex;

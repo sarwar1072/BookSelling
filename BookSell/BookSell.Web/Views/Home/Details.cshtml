@@ -1,76 +1,83 @@
-﻿@model Framework.Entities.ShoppingCart
+﻿ @model Framework.Entities.ShoppingCart
 @{
     ViewData["Title"] = "Details";
 }
 
 <form method="post">
-    <input hidden asp-for="ProductId" />
-    <div class="container backgroundWhite">
+    <input type="hidden" asp-for="ProductId" />
+    <div class="container bg-light p-4 rounded shadow-lg">
         <div class="card">
-            <div class="card-header bg-light text-dark row">
-                <div class="col-12 col-md-6">
-                    <h1 class="text-primary">@Model.Product.Title</h1>
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <div>
+                    <h1>@Model.Product.Title</h1>
                     <p class="text-warning">by @Model.Product.Author</p>
                 </div>
-                <div class="col-12 col-md-6 text-md-right pt-4">
-                    <span class="badge badge-success pt-2" style="height:30px;">@Model.Product.CoverType.Name</span>
-                    <span class="badge badge-warning pt-2" style="height:30px;">@Model.Product.Category.Name</span>
+                <div class="text-end">
+                    <span class="badge bg-success p-2">@Model.Product.CoverType.Name</span>
+                    <span class="badge bg-warning p-2">@Model.Product.Category.Name</span>
                 </div>
             </div>
             <div class="card-body">
-                <div class="container rounded p-2">
-                    <div class="row">
-                        <div class="col-12 col-lg-8">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h5 class="text-muted">ISBN : @Model.Product.ISBN</h5>
-                                    <h5 class="text-muted pb-2">List Price: <strike>@Model.Product.ListPrice.ToString("c")</strike></h5>
-                                </div>
-                            </div>
-                            <div class="row text-center">
-                                <div class="col-2 bg-secondary p-1 border-bottom">Quantity</div>
-                                <div class="col-2 bg-secondary p-1 border-bottom">1-49</div>
-                                <div class="col-2 bg-secondary p-1 border-bottom">50-99</div>
-                                <div class="col-2 bg-secondary p-1 border-bottom">100+</div>
-                            </div>
-                            <div class="row text-center" style="color: maroon; font-weight: bold">
-                                <div class="col-2 bg-secondary p-1">Price</div>
-                                <div class="col-2 bg-secondary p-1">@Model.Product.Price.ToString("c")</div>
-                                <div class="col-2 bg-secondary p-1">@Model.Product.Price50.ToString("c")</div>
-                                <div class="col-2 bg-secondary p-1">@Model.Product.Price100.ToString("c")</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p class="text-secondary">@Html.Raw(Model.Product.Description)</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 text-primary"><h4>Count</h4></div>
-                                <div class="col-4"><input class="form-control" asp-for="Count" /></div>
-                                <div class="col-4">
-                                    <a class="btn btn-primary" style="color:white" data-toggle="modal" data-target="#exampleModal">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-4 text-center">
-                            <img src="@Model.Product.ImageUrl" width="100%" class="rounded" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-footer">
                 <div class="row">
-                    <div class="col-12 col-md-6 pb-1">
-                        <a asp-action="Index" class="btn btn-success form-control btn-lg" style="height:50px;">Back to List</a>
+                    <div class="col-lg-8">
+                        <h5 class="text-muted">ISBN: @Model.Product.ISBN</h5>
+                        <h5 class="text-muted"><strike>@Model.Product.ListPrice.ToString("c")</strike></h5>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <thead class="bg-secondary text-white">
+                                    <tr>
+                                        <th>Quantity</th>
+                                        <th>1-49</th>
+                                        <th>50-99</th>
+                                        <th>100+</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="color: maroon; font-weight: bold">
+                                        <td>Price</td>
+                                        <td>@Model.Product.Price.ToString("c")</td>
+                                        <td>@Model.Product.Price50.ToString("c")</td>
+                                        <td>@Model.Product.Price100.ToString("c")</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p class="text-secondary">@Html.Raw(Model.Product.Description)</p>
+
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <h4 class="text-primary">Count</h4>
+                            </div>
+                            <div class="col-4">
+                                <input type="number" class="form-control" asp-for="Count" min="1" value="1">
+                            </div>
+                            <div class="col-4">
+                                <a class="btn btn-primary" style="color:white" data-toggle="modal" data-target="#exampleModal">Read More</a>
+                            </div>
+                       
+                        </div>
                     </div>
-                    <div class="col-12 col-md-6 pb-1">
-                        <button type="submit" value="Add to Cart" class="btn btn-primary btn-lg form-control" style="height:50px;">Add to Cart</button>
+                    <div class="col-lg-4 text-center">
+                        <img src="@Model.Product.ImageUrl" class="img-fluid rounded shadow" />
                     </div>
                 </div>
             </div>
 
-            @* Modal *@
+            <div class="card-footer text-center">
+                <div class="row">
+                    <div class="col-md-6 pb-2">
+                        <a asp-action="Index" class="btn btn-success btn-lg w-100">Back to List</a>
+                    </div>
+                    <div class="col-md-6 pb-2">
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -88,7 +95,11 @@
                     </div>
                 </div>
             </div>
-            @* End Modal *@
+            <!-- End Modal -->
         </div>
     </div>
 </form>
+
+<!-- Ensure Bootstrap 5 JS is Loaded -->
+
+

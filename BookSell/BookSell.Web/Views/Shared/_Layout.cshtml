@@ -13,19 +13,16 @@
     <link rel="stylesheet" href="~/css/siteOne.css" />
     <link rel="stylesheet" href="~/css/FooterCss.css" />
 
-
-@*      <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
- *@
-@*     <link href="~/css/site.css" rel="stylesheet" />
- *@    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 ">
 
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BookSell</a>
@@ -81,7 +78,7 @@
             </div>
         </nav>
     </header>
-    <div id="content" class="container">
+    <div id="content1" class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -98,6 +95,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/e19c476714.js"></script>
+
     @RenderSection("Scripts", required: false)
    
 </body>

@@ -1,82 +1,67 @@
-﻿@* @model LoginModel
+﻿ @model LoginModel
 
 @{
     ViewData["Title"] = "Log in";
 }
 
-<div class="Container mt-5">
-    <div class="row">
-        <div class="col-sm-2">
-        </div>
-        <div class="col-sm-8" id="logreg-forms">
-            <form id="account" method="post">
-                <div class="form-group">
-                    <input asp-for="Email" placeholder="Email..." type="email" class="mb-1 form-control" />
-                </div>
-                <div class="form-group">
-                    <input asp-for="Password" placeholder="Password..." type="password" class="form-control" />
-
-                </div>
-                <div class="form-group">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-block"><i class="fas fa-sign-in-alt"></i> Sign in</button>
-                    </div>
-                    <div class="form-group text-center">
-                        <a asp-action="Registration" asp-controller="Register"
-                           class="btn btn-primary text-white"><i class="fas fa-user-plus"></i> Register as a new user</a>
-                    </div>
-                </div>
-
-
-                <div asp-validation-summary="All" class="text-danger"></div>
-            </form>
-        </div>
-        <div class="col-sm-2">
-        </div>
-
-    </div>
-</div>
-
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
- *@
-
-@model LoginModel
-
-@{
-    ViewData["Title"] = "Log in";
-}
-
-<div class="container mt-5 mb-5">
+<div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8 col-sm-10" id="logreg-forms">
-            <form id="account" method="post">
-                <div class="form-group">
-                    <input asp-for="Email" placeholder="Email..." type="email" class="mb-2 form-control" />
+        <div class="col-lg-5 col-md-7 col-sm-10">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3><i class="fas fa-user-lock"></i> Sign In</h3>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Password" placeholder="Password..." type="password" class="form-control" />
+                <div class="card-body p-4">
+                    <form id="account" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input asp-for="Email" type="email" class="form-control" placeholder="Enter your email">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 d-grid">
+                            <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+                        </div>
+
+                        <div class="text-center">
+                            <a asp-action="Registration" asp-controller="Register" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-user-plus"></i> Register as a new user
+                            </a>
+                        </div>
+
+                        <hr>
+
+                        <div class="text-center">
+                            <button type="button" class="btn btn-outline-danger w-100 mb-2">
+                                <i class="fab fa-google"></i> Sign in with Google
+                            </button>
+                            <button type="button" class="btn btn-outline-primary w-100">
+                                <i class="fab fa-facebook-f"></i> Sign in with Facebook
+                            </button>
+                        </div>
+
+                        <div asp-validation-summary="All" class="text-danger mt-3"></div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-block"><i class="fas fa-sign-in-alt"></i> Sign in</button>
-                </div>
-                <div class="form-group text-center">
-                    <a asp-action="Registration" asp-controller="Register" class="btn btn-primary text-white"><i class="fas fa-user-plus"></i> Register as a new user</a>
-                </div>
-                <div class="form-group text-center mb-3">
-                    <a href="#" class="btn btn-danger text-white"><i class="fab fa-google"></i> Log in with Google</a>
-                </div>
-                <div class="form-group text-center mb-3">
-                    <a href="#" class="btn btn-primary text-white"><i class="fab fa-facebook-f"></i> Log in with Facebook</a>
-                </div>
-                <div asp-validation-summary="All" class="text-danger"></div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT.js" crossorigin="anonymous"></script>
+
 }
+
+<!-- Ensure FontAwesome is Included -->
